@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ ! -f $1 ]; then
+	echo "[Usage] `basename $0` (filename)"
+	exit 1
+fi
+
+# Variables
+FILE=$1
+
+# Connect to FTP HOST and Send File
+ftp -i -v -n 10.103.0.42 <<END_SCRIPT
+   user ytanaka kl67u1oz
+   bin
+   ascii
+   put $FILE
+   quit
+END_SCRIPT
+exit 0

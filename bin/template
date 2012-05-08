@@ -1,0 +1,88 @@
+#!/bin/sh
+
+TEMP_PATH="/home/ts-yuki.a.tanaka/.template"
+TEMP_CHEAT_PATH="${TEMP_PATH}/cheat"
+TEMP_MEMO_PATH="${TEMP_PATH}/memo"
+
+MODE_NORMAL=1000
+MODE_USAGE=1001
+
+mode=${MODE_NORMAL}
+if [ $# -ne 1 ]; then
+    mode=${MODE_USAGE}
+elif 
+	[ ! -f "${TEMP_PATH}/$1" ] && 
+	[ ! -f "${TEMP_CHEAT_PATH}/$1" ] &&
+	[ ! -f "${TEMP_MEMO_PATH}/$1" ];then
+
+    mode=${MODE_USAGE}
+fi
+
+if [ ${mode} == ${MODE_USAGE} ];then
+    usage="[Usage] `basename $0` (template name)"
+
+    ##### template list
+    echo "$usage"
+    echo ""
+    echo "[template list]"
+    for file in `ls ${TEMP_PATH}`
+    do
+        if [ -d "${TEMP_PATH}/${file}" ]; then
+            continue
+        fi
+        echo "    - ${file}"
+    done
+
+    ##### cheat sheet
+    echo ""
+    echo "[cheat sheet]"
+    for file in `ls ${TEMP_CHEAT_PATH}`
+    do
+        if [ -d ${file} ]; then
+            continue
+        fi
+        echo "    - ${file}"
+    done
+
+    ##### memo
+    echo ""
+    echo "[memo]"
+    for file in `ls ${TEMP_MEMO_PATH}`
+    do
+        if [ -d ${file} ]; then
+            continue
+        fi
+        echo "    - ${file}"
+    done
+
+
+else
+
+    if [ -f "${TEMP_PATH}/$1" ]; then
+        echo "#====================================="
+        echo "#  $1 template"
+        echo "#====================================="
+        echo ""
+
+        cat "${TEMP_PATH}/$1"
+    fi
+
+    if [ -f "${TEMP_CHEAT_PATH}/$1" ]; then
+        echo "#====================================="
+        echo "#  $1 cheat sheet"
+        echo "#====================================="
+        echo ""
+
+
+        cat "${TEMP_CHEAT_PATH}/$1"
+    fi
+
+    if [ -f "${TEMP_MEMO_PATH}/$1" ]; then
+        echo "#====================================="
+        echo "#  $1 memo"
+        echo "#====================================="
+        echo ""
+
+        cat "${TEMP_MEMO_PATH}/$1"
+    fi
+fi

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+telnet 10.103.0.42 --user=ytanaka
+

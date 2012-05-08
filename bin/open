@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/c/WINDOWS/explorer.exe "$(cygpath -wa `pwd`)"
