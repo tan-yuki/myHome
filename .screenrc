@@ -1,0 +1,27 @@
+escape ^Zz
+startup_message off
+defbce "on"
+term xterm-256color
+autodetach on
+defscrollback 100000
+vbell off
+
+# each screen status
+caption always "%{=r dw} %-w%{=b Kw} %n %t %{-}%+w %="
+
+# this window status
+hardstatus alwayslastline "%{=b Bw} %{=b Bw}@%H : %{=b Bw}%-Lw%{=b Kw} %n%f+ %t %{=b Bw}%+Lw %{=b Bw}%= %a%C %{=b Bw}%y/%m/%d"
+
+##########
+# Bind
+#########
+bind n screen
+bind l windowlist -b
+
+#resize
+bind r eval 'command -c resize'
+bind ^r eval 'command -c resize'
+bind + eval 'command -c resize'
+bind - eval 'command -c resize'
+bind -c resize + eval 'resize +1' 'command -c resize'
+bind -c resize - eval 'resize -1' 'command -c resize'

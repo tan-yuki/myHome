@@ -1,0 +1,17 @@
+# vi mode
+set editing-mode vi
+
+set completion-ignore-case on
+set meta-flag on
+set convert-meta off
+set output-meta on
+
+# "\C-v": paste-from-clipboard
+"\C-g": " | grep "
+"\C-j": unix-word-rubout
+
+
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+
+"\C-l": clear-screen

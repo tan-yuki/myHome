@@ -1,0 +1,3 @@
+export DESKTOP=${WIN_HOME}/デスクトップ/
+export DOCUMENT=${WIN_HOME}/My\ Documents/
+export CYGWIN=nodosfilewarning;
