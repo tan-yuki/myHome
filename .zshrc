@@ -21,7 +21,7 @@ compinit
 export SHELL=/bin/zsh
 export TMPDIR=/tmp
 export PAGER=less
-export PATH=/usr/local/sbin:/usr/sbin:/sbin:.:/c/php/:/usr/local/bin:/usr/bin:$HOME/bin/:
+export PATH=$HOME/bin/:$PATH:/usr/local/sbin:/usr/sbin:/sbin:.:/c/php/:/usr/local/bin:/usr/bin:
 export LANG=ja_JP.UTF-8
 
 export LSCOLORS=exfxcxdxbxegedabagacad
