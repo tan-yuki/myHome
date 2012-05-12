@@ -10,3 +10,4 @@
 !/.zshrc
 !/.zshrc.cygwin
 !/bin
+!/makeLnkToHome.sh
