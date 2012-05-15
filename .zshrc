@@ -29,6 +29,7 @@ alias ls="ls -G"
 alias rm='rm -i'
 alias ls='ls --color=tty'
 alias ll='ls -altr'
+alias grep='grep -a'
 alias dirs='dirs -p'
 
 # custom_color.sh
