@@ -171,6 +171,16 @@ setopt extended_glob
 ## globでパスを生成したときに、パスがディレクトリだったら最後に「/」をつける。
 setopt mark_dirs
 
+# judge this is the CYGWIN
+cygwin=false
+case "$(uname)" in
+	CYGWIN*) cygwin=true;;
+esac
+
+if $cygwin; then
+	source "${HOME}/.zshrc.cygwin"
+fi
+
 localize_file="${HOME}/.zshrc.local"
 if [ -f ${localize_file} ]; then
 	source ${localize_file}
