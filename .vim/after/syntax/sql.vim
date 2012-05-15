@@ -135,6 +135,7 @@ syn match Special 'CASE'
 syn match Special 'WHILE'
 syn match Special 'EXTEND'
 syn match Special 'RAISE'
+syn match Special 'ABS'
 
 
 " Functions
