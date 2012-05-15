@@ -2,6 +2,9 @@ syntax on
 filetype plugin on
 filetype indent on
 
+" pathogen settings
+call pathogen#runtime_append_all_bundles()
+
 " ===== Open a file with pre-modified point
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
