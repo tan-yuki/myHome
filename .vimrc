@@ -7,6 +7,9 @@ autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
 autocmd BufNewFile *.js   0r   $HOME/.vim/template/javascript.txt
 
+" pathogen settings
+call pathogen#runtime_append_all_bundles()
+
 " ===== Open a file with pre-modified point
 au BufWritePost * mkview
 autocmd BufReadPost * loadview

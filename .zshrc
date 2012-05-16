@@ -28,6 +28,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 alias ls="ls -G"
 alias rm='rm -i'
 alias ll='ls -altr'
+alias grep='grep -a'
 alias dirs='dirs -p'
 
 # custom_color.sh
@@ -169,6 +170,16 @@ setopt magic_equal_subst
 setopt extended_glob
 ## globでパスを生成したときに、パスがディレクトリだったら最後に「/」をつける。
 setopt mark_dirs
+
+# judge this is the CYGWIN
+cygwin=false
+case "$(uname)" in
+	CYGWIN*) cygwin=true;;
+esac
+
+if $cygwin; then
+	source "${HOME}/.zshrc.cygwin"
+fi
 
 localize_file="${HOME}/.zshrc.local"
 if [ -f ${localize_file} ]; then
