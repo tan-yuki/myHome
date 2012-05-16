@@ -3,8 +3,9 @@ filetype plugin on
 filetype indent on
 
 " ===== Insert template
-autocmd BufNewFile *.php 0r    $HOME/.vim/template/php.txt
+autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
+autocmd BufNewFile *.js   0r   $HOME/.vim/template/javascript.txt
 
 " ===== Open a file with pre-modified point
 au BufWritePost * mkview
