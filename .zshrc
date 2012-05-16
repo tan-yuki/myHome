@@ -27,7 +27,6 @@ export LANG=ja_JP.UTF-8
 export LSCOLORS=exfxcxdxbxegedabagacad
 alias ls="ls -G"
 alias rm='rm -i'
-alias ls='ls --color=tty'
 alias ll='ls -altr'
 alias dirs='dirs -p'
 
