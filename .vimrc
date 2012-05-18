@@ -11,8 +11,8 @@ autocmd BufNewFile *.js   0r   $HOME/.vim/template/javascript.txt
 call pathogen#runtime_append_all_bundles()
 
 " twitvim setting
-let twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
-let twitvim_browser_cmd = "Google\ Chrome.app"
+let g:twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
+let g:twitvim_browser_cmd = 'open -a /Applications/Google\ Chrome.app/'
 
 " ===== Open a file with pre-modified point
 au BufWritePost * mkview
@@ -163,9 +163,14 @@ highlight PmenuSbar ctermbg=white
 " Define file type
 au BufRead,BufNewFile *.sql set filetype=sql
 au BufRead,BufNewFile *.case set filetype=html
+au BufRead,BufNewFile *.vim set filetype=vim
 
 
 " ==== Other key mappings
 " search selected words by visual mode
 " (ref.http://vim-users.jp/2009/11/hack104/)
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+
+
+" Enter -> New line
+noremap <CR> o<ESC>
