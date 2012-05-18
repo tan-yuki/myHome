@@ -1,1 +1,1 @@
-unalias open
+alias open='/usr/bin/open'
