@@ -10,6 +10,10 @@ autocmd BufNewFile *.js   0r   $HOME/.vim/template/javascript.txt
 " pathogen settings
 call pathogen#runtime_append_all_bundles()
 
+" twitvim setting
+let twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
+let twitvim_browser_cmd = "Google\ Chrome.app"
+
 " ===== Open a file with pre-modified point
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
