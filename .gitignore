@@ -10,6 +10,7 @@
 /.vim/view/
 !/.zshrc
 !/.zshrc.cygwin
+!/.zshrc.unix
 !/bin
 !/makeLnkToHome.sh
 /.vim/view
