@@ -23,8 +23,9 @@ export TMPDIR=/tmp
 export PAGER=less
 export PATH=$HOME/bin/:$PATH:/usr/local/sbin:/usr/sbin:/sbin:.:/c/php/:/usr/local/bin:/usr/bin:
 export LANG=ja_JP.UTF-8
-
 export LSCOLORS=exfxcxdxbxegedabagacad
+export JSTESTDRIVER_HOME=$HOME/bin
+
 alias ls="ls -G"
 alias rm='rm -i'
 alias ls='ls --color=tty'

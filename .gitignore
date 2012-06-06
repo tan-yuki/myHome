@@ -12,5 +12,6 @@
 !/bin
 !/makeLnkToHome.sh
 /.vim/view
-/.vim/doc/tags*
+/.vim/doc/tags
+/.vim/doc/tags-ja
 /.vim/.netrwhist
