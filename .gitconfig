@@ -27,6 +27,5 @@
 	email = a0673040@gmail.com
 [core]
 	excludesfile = ./.gitignore
-	pager = lv -c
 [diff]
 	tool = vimdiff

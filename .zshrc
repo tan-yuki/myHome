@@ -28,7 +28,6 @@ export JSTESTDRIVER_HOME=$HOME/bin
 
 alias ls="ls -G"
 alias rm='rm -i'
-alias ls='ls --color=tty'
 alias ll='ls -altr'
 alias grep='grep -a'
 alias dirs='dirs -p'
@@ -173,14 +172,20 @@ setopt extended_glob
 ## globでパスを生成したときに、パスがディレクトリだったら最後に「/」をつける。
 setopt mark_dirs
 
-# judge this is the CYGWIN
+# judge OS
 cygwin=false
+unix=false
 case "$(uname)" in
 	CYGWIN*) cygwin=true;;
+	Darwin) unix=true;;
 esac
 
 if $cygwin; then
 	source "${HOME}/.zshrc.cygwin"
+fi
+
+if $unix; then
+	source "${HOME}/.zshrc.unix"
 fi
 
 localize_file="${HOME}/.zshrc.local"

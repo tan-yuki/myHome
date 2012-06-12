@@ -7,9 +7,11 @@
 !/.minttyrc
 !/.vimrc
 !/.vim
+/.vim/view/
 !/.zshrc
 !/.zshrc.cygwin
 !/.ctags
+!/.zshrc.unix
 !/bin
 !/makeLnkToHome.sh
 /.vim/view

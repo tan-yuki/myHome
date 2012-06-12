@@ -1,0 +1,12 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * 
+ * @author Yuuki Tanka
+ */
+class Clss {
+
+	public function __construct() {
+
+	}
+}
