@@ -9,6 +9,7 @@
 !/.vim
 !/.zshrc
 !/.zshrc.cygwin
+!/.ctags
 !/bin
 !/makeLnkToHome.sh
 /.vim/view
