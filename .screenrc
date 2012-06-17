@@ -12,11 +12,20 @@ caption always "%{=r dw} %-w%{=b Kw} %n %t %{-}%+w %="
 # this window status
 hardstatus alwayslastline "%{=b Bw} %{=b Bw}@%H : %{=b Bw}%-Lw%{=b Kw} %n%f+ %t %{=b Bw}%+Lw %{=b Bw}%= %a%C %{=b Bw}%y/%m/%d"
 
+# encodings
+defkanji utf-8
+defencoding utf-8
+encoding UTF-8 UTF-8
+
 ##########
 # Bind
 #########
 bind n screen
 bind l windowlist -b
+
+# encoding
+bind ^s eval 'defkanji sjis' 'encoding SJIS SJIS'
+bind ^u eval 'defkanji utf-8' 'encoding UTF-8 UTF-8'
 
 #resize
 bind r eval 'command -c resize'

@@ -15,5 +15,5 @@ CursorBlinks=no
 Term=xterm-256color
 FontSmoothing=full
 ForegroundColour=255,255,255
-FontHeight=11
+FontHeight=14
 ClicksTargetApp=no

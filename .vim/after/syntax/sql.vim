@@ -136,6 +136,15 @@ syn match Special 'WHILE'
 syn match Special 'EXTEND'
 syn match Special 'RAISE'
 syn match Special 'ABS'
+syn match Special 'FIRST'
+syn match Special 'LAST'
+syn match Special 'JOIN'
+syn match Special 'BULK'
+syn match Special 'COLLECT'
+syn match Special 'INNER'
+syn match Special 'ROWTYPE'
+syn match Special 'ADD_MONTHS'
+" syn match Special 'COUNT'
 
 
 " Functions

@@ -24,6 +24,13 @@ let g:twitvim_browser_cmd = 'open -a /Applications/Google\ Chrome.app/'
 au BufWritePost * mkview
 autocmd BufReadPost * loadview
 
+" === Rect insert
+vmap <silent> <leader>vp <Plug>:RectInsert -i
+
+" === Twitter settings
+let twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
+let twitvim_proxy = 'http://lms.mytrip.net:3128'
+
 " ===== QFix App settings
 set runtimepath+=~/.vim/qfixapp/
 let QFixHowm_Key         = 'g'
@@ -43,7 +50,7 @@ set foldmethod=syntax
 
 " ===== Encoding settings
 set encoding=utf-8
-set fileencodings=utf-8,sjis,cp932
+set fileencodings=utf-8,sjis,cp932,iso-2022-jp,euc-jp
 
 " ===== Basic settings
 " - show line number

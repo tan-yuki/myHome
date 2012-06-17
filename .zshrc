@@ -26,8 +26,9 @@ export PATH=$HOME/bin/:$MAGICK_HOME/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin:.:
 export PATH=$PATH:$HOME/.rvm/gems/ruby-1.9.3-p125/bin
 export LANG=ja_JP.UTF-8
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
-
 export LSCOLORS=exfxcxdxbxegedabagacad
+export JSTESTDRIVER_HOME=$HOME/bin
+
 alias ls="ls -G"
 alias rm='rm -i'
 alias ll='ls -altr'

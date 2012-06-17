@@ -10,7 +10,11 @@
 /.vim/view/
 !/.zshrc
 !/.zshrc.cygwin
+!/.ctags
 !/.zshrc.unix
 !/bin
 !/makeLnkToHome.sh
 /.vim/view
+/.vim/doc/tags
+/.vim/doc/tags-ja
+/.vim/.netrwhist
