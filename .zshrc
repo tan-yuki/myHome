@@ -18,11 +18,14 @@ compinit
 # End of lines added by compinstall
 
 ##### my settings
+export MAGICK_HOME=/usr/local/ImageMagick
 export SHELL=/bin/zsh
 export TMPDIR=/tmp
 export PAGER=less
-export PATH=$HOME/bin/:$PATH:/usr/local/sbin:/usr/sbin:/sbin:.:/c/php/:/usr/local/bin:/usr/bin:
+export PATH=$HOME/bin/:$MAGICK_HOME/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin:.:/c/php/:/usr/local/bin:/usr/bin:
+export PATH=$PATH:$HOME/.rvm/gems/ruby-1.9.3-p125/bin
 export LANG=ja_JP.UTF-8
+export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 alias ls="ls -G"

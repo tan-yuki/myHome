@@ -2,6 +2,12 @@ syntax on
 filetype plugin on
 filetype indent on
 
+set cursorline
+
+set visualbell
+
+au BufNewFile,BufRead *.rb setf ruby
+
 " ===== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
@@ -171,6 +177,3 @@ au BufRead,BufNewFile *.vim set filetype=vim
 " (ref.http://vim-users.jp/2009/11/hack104/)
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 
-
-" Enter -> New line
-noremap <CR> o<ESC>
