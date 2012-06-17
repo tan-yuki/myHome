@@ -1,2 +1,0 @@
-tcomment.vba: call delete('/Users/tanakayuuki/.vim/doc/tcomment.txt')|call delete('/Users/tanakayuuki/.vim/plugin/tcomment.vim')|call delete('/Users/tanakayuuki/.vim/autoload/tcomment.vim')
-twitvim-0.7.4.vmb: call delete('/home/ts-yuki.a.tanaka/.vim/plugin/twitvim.vim')|call delete('/home/ts-yuki.a.tanaka/.vim/doc/twitvim.txt')
