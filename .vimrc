@@ -6,8 +6,6 @@ set cursorline
 
 set visualbell
 
-au BufNewFile,BufRead *.rb setf ruby
-
 " ===== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
@@ -98,70 +96,12 @@ noremap ^? ^H
 noremap! ^? ^H
 set backspace=2
 
-" ===== For Auto completion by Tab key
-" let g:neocomplcache_enable_at_startup = 1
-" function InsertTabWrapper()
-"     if pumvisible()
-"         return "\<c-n>"
-"     endif
-"     let col = col('.') - 1
-"     if !col || getline('.')[col - 1] !~ '\k\|<\|/'
-"         return "\<tab>"
-"     elseif exists('&omnifunc') && &omnifunc == ''
-"         return "\<c-n>"
-"     else
-"         return "\<c-x>\<c-o>"
-"     endif
-" endfunction
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-
 " ==== for vimdiff setting
 set diffopt-=filler
 hi DiffAdd    ctermfg=black   ctermbg=lightblue
 hi DiffDelete ctermfg=black   ctermbg=lightmagenta
 hi DiffChange ctermfg=black   ctermbg=lightgray
 hi DiffText   ctermfg=black   ctermbg=lightcyan
-
-
-" ===== Normarl mode key bind setting
-nmap <F8> :TrinityToggleAll<CR>
-nmap <F9> :TrinityToggleTagList<CR>
-nmap <F10> :TrinityToggleNERDTree<CR>
-" for move split window
-nmap <C-w><l> <C-w><C-l><CR>
-nmap <C-w><h> <C-w><C-h><CR>
-
-
-
-" ===== Submode settings
-" == Resize split line
-"call submode#enter_with('resize_split_line', 'n', '', '<C-w><lt>', '<C-w><lt>');
-"call submode#enter_with('resize_split_line', 'n', '', '<C-w>', '<C-w><lt>');
-"call submode#enter_with('resize_split_line', 'n', '', '<C-w><lt>', '<C-w><lt>');
-"call submode#enter_with('resize_split_line', 'n', '', '<C-w><lt>', '<C-w><lt>');
-
-
-" ===== FuzzyFinder settings
-" Tabs
-nnoremap <Space>t t
-nnoremap <Space>T T
-nnoremap t <Nop>
-nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
-nnoremap <silent> tk :<C-u>tabclose<CR>
-nnoremap <silent> tn :<C-u>tabnext<CR>
-nnoremap <silent> tp :<C-u>tabprevious<CR>
-
-" FuzzyFinder.vim
-nnoremap <Space>f f
-nnoremap <Space>F F
-nnoremap f <Nop>
-nnoremap <silent> fb :<C-u>FuzzyFinderBuffer!<CR>
-nnoremap <silent> ff :<C-u>FuzzyFinderFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <silent> fm :<C-u>FuzzyFinderMruFile!<CR>
-nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FuzzyFinderBuffer!<CR>
-nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FuzzyFinderFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
-nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FuzzyFinderMruFile!<CR>
-
 
 " ===== Autocompletion settings
 " Remap the tab key to select action with InsertTabWrapper
@@ -183,4 +123,3 @@ au BufRead,BufNewFile *.vim set filetype=vim
 " search selected words by visual mode
 " (ref.http://vim-users.jp/2009/11/hack104/)
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
-
