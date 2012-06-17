@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/vim-rectinsert"]
+	path = .vim/bundle/vim-rectinsert
+	url = https://github.com/hekyou/vim-rectinsert.git
