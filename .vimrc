@@ -123,3 +123,30 @@ au BufRead,BufNewFile *.vim set filetype=vim
 " search selected words by visual mode
 " (ref.http://vim-users.jp/2009/11/hack104/)
 "vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+
+
+" History setting
+cnoremap <C-n>          <Down>
+cnoremap <C-p>          <Up>
+
+" Cmd window settings
+nnoremap <sid>(command-line-enter) q:
+xnoremap <sid>(command-line-enter) q:
+nnoremap <sid>(command-line-norange) q:<C-u>
+
+nmap :  <sid>(command-line-enter)
+xmap :  <sid>(command-line-enter)
+
+autocmd CmdwinEnter * call s:init_cmdwin()
+function! s:init_cmdwin()
+  nnoremap <buffer> q :<C-u>quit<CR>
+  nnoremap <buffer> <TAB> :<C-u>quit<CR>
+  inoremap <buffer><expr><CR> pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+  inoremap <buffer><expr><C-h> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+  inoremap <buffer><expr><BS> pumvisible() ? "\<C-y>\<C-h>" : "\<C-h>"
+
+  " Completion.
+  inoremap <buffer><expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  startinsert!
+endfunction
