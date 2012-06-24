@@ -13,3 +13,9 @@
 [submodule ".vim/bundle/vim-rectinsert"]
 	path = .vim/bundle/vim-rectinsert
 	url = https://github.com/hekyou/vim-rectinsert.git
+[submodule ".vim/bundle/zencoding"]
+	path = .vim/bundle/zencoding
+	url = http://github.com/mattn/zencoding-vim.git
+[submodule ".vim/vim-altercmd"]
+	path = .vim/vim-altercmd
+	url = https://github.com/tyru/vim-altercmd.git
