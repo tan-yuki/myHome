@@ -16,6 +16,6 @@
 [submodule ".vim/bundle/zencoding"]
 	path = .vim/bundle/zencoding
 	url = http://github.com/mattn/zencoding-vim.git
-[submodule ".vim/vim-altercmd"]
-	path = .vim/vim-altercmd
+[submodule ".vim/bundle/vim-altercmd"]
+	path = .vim/bundle/vim-altercmd
 	url = https://github.com/tyru/vim-altercmd.git
