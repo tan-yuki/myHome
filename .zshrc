@@ -29,6 +29,7 @@ export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 export LSCOLORS=exfxcxdxbxegedabagacad
 export JSTESTDRIVER_HOME=$HOME/bin
 
+
 alias ls="ls -G"
 alias rm='rm -i'
 alias ll='ls -altr'

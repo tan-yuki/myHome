@@ -56,7 +56,7 @@ set nu
 
 " - visible empty chars
 set list
-set listchars=tab:>.,trail:-,eol:$,nbsp:%
+set listchars=tab:>.,trail:-,eol:$,nbsp:%,extends:\
 
 " - Tab setting
 set ts=4
@@ -150,3 +150,26 @@ function! s:init_cmdwin()
 
   startinsert!
 endfunction
+
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+
+" Expand window
+noremap <C-w>+ <C-w>10+
+noremap <C-w>- <C-w>10-
+noremap <C-<>< <C-w>10<
+noremap <C->>> <C-w>10>
+
+" ============== My commands ==============
+" on syntastic.vim
+function! SyntasticOff()
+  let g:syntastic_enable_signs=0
+  let g:syntastic_echo_current_error=0
+endfunction
+command! SyntasticOff :call SyntasticOff()
+
+" off syntastic.vim
+function! SyntasticOn()
+  let g:syntastic_enable_signs=1
+  let g:syntastic_echo_current_error=1
+endfunction
+command! SyntasticOn :call SyntasticOn()
