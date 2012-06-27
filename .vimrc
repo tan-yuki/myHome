@@ -6,6 +6,19 @@ set cursorline
 
 set visualbell
 
+" ==== neocomplcache
+
+" ON neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+
+inoremap <C-Space> <C-N><C-P>
+
+inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
+inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
+highlight Pmenu ctermbg=blue
+highlight PmenuSel ctermbg=red ctermfg=white
+highlight PmenuSbar ctermbg=white
+
 " ===== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
@@ -103,15 +116,6 @@ hi DiffDelete ctermfg=black   ctermbg=lightmagenta
 hi DiffChange ctermfg=black   ctermbg=lightgray
 hi DiffText   ctermfg=black   ctermbg=lightcyan
 
-" ===== Autocompletion settings
-" Remap the tab key to select action with InsertTabWrapper
-inoremap <C-Space> <C-N><C-P>
-
-inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
-inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
-highlight Pmenu ctermbg=red
-highlight PmenuSel ctermbg=blue ctermfg=white
-highlight PmenuSbar ctermbg=white
 
 " Define file type
 au BufRead,BufNewFile *.sql set filetype=sql
@@ -173,3 +177,7 @@ function! SyntasticOn()
   let g:syntastic_echo_current_error=1
 endfunction
 command! SyntasticOn :call SyntasticOn()
+
+call SyntasticOff()
+
+
