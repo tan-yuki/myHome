@@ -28,6 +28,7 @@ export LANG=ja_JP.UTF-8
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 export LSCOLORS=exfxcxdxbxegedabagacad
 export JSTESTDRIVER_HOME=$HOME/bin
+export VIMHOME=$HOME/.vim/
 
 
 alias ls="ls -G"
