@@ -27,11 +27,14 @@ export JSTESTDRIVER_HOME=$HOME/bin
 export VIMHOME=$HOME/.vim/
 
 
-alias ls="ls -G"
+alias ls="ls --color=auto"
 alias rm='rm -i'
 alias ll='ls -altr'
 alias grep='grep -a'
 alias dirs='dirs -p'
+
+# dir colors
+eval $(dircolors -b ~/.dir_colors)
 
 # custom_color.sh
 autoload colors
@@ -40,7 +43,7 @@ colors
 ##### git settings
 
 # Auto completin settings
-source /usr/local/git/contrib/completion/git-completion.bash
+# source /usr/local/git/contrib/completion/git-completion.bash
 # GIT_PS1_SHOWDIRTYSTATE=true
 # export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
@@ -92,24 +95,12 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 
 ### Prompt Setting
- case ${UID} in
- 0)
-     PROMPT="%B%{${fg[green]}%}%n@%m#%{${reset_color}%}%b "
-     PROMPT2="%B%{${fg[green]}%}%_#%{${reset_color}%}%b "
+	 PROMPT="%{${fg[green]}%}%n@%m %%%{${reset_color}%} "
+	 PROMPT2="%{${fg[green]}%}%_%%%{${reset_color}%} "
   RPROMPT="%{${fg[yellow]}%}[%~]%{${reset_color}%}"
-     SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-     ;;
- *)
-     PROMPT="%{${fg[green]}%}%n@%m %%%{${reset_color}%} "
-     PROMPT2="%{${fg[green]}%}%_%%%{${reset_color}%} "
-  RPROMPT="%{${fg[yellow]}%}[%~]%{${reset_color}%}"
-     SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-     [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
-     ;;
- esac
+	 SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+	 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+		 PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
 
 
 ## 補完方法毎にグループ化する。
