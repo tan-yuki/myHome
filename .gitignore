@@ -9,6 +9,7 @@
 !/.vim
 /.vim/view/
 !/.zshrc
+!/.zsh
 !/.zshrc.cygwin
 !/.ctags
 !/.zshrc.unix
