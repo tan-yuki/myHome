@@ -2,7 +2,6 @@
 HISTFILE=~/.histfile
 HISTSIZE=9999
 SAVEHIST=9999
-bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 
@@ -18,14 +17,11 @@ compinit
 # End of lines added by compinstall
 
 ##### my settings
-export MAGICK_HOME=/usr/local/ImageMagick
 export SHELL=/bin/zsh
 export TMPDIR=/tmp
 export PAGER=less
-export PATH=$HOME/bin/:$MAGICK_HOME/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin:.:/c/php/:/usr/local/bin:/usr/bin:
-export PATH=$PATH:$HOME/.rvm/gems/ruby-1.9.3-p125/bin
+export PATH=$HOME/bin:$PATH:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin
 export LANG=ja_JP.UTF-8
-export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 export LSCOLORS=exfxcxdxbxegedabagacad
 export JSTESTDRIVER_HOME=$HOME/bin
 export VIMHOME=$HOME/.vim/
@@ -197,3 +193,19 @@ localize_file="${HOME}/.zshrc.local"
 if [ -f ${localize_file} ]; then
 	source ${localize_file}
 fi
+
+function myvi () {
+	file=$1
+	if [ -f ${file} ]; then
+		vi ${file}
+	else
+		dir=`dirname ${file}`
+		echo $dir
+		if [ ! -d ${dir} ]; then
+			mkdir -p ${dir}
+		fi
+		vi ${file}
+	fi
+}
+
+alias vi='myvi'
