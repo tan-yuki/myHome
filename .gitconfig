@@ -5,7 +5,7 @@
 	co = checkout
 
 	#### シンプルなstatus
-	st = status -sb
+	st = status -s
 
 	#### pull するときにmergeコミットを作らない
 	pr = pull --rebase
