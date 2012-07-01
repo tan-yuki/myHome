@@ -12,6 +12,7 @@
 !/.zshrc.cygwin
 !/.ctags
 !/.zshrc.unix
+!/.dir_colors
 !/bin
 !/makeLnkToHome.sh
 /.vim/view
