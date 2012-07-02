@@ -3,6 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=9999
 SAVEHIST=9999
 bindkey '^R' history-incremental-search-backward
+bindkey -v
 
 
 # End of lines configured by zsh-newuser-install
