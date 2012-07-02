@@ -34,6 +34,13 @@ alias ll='ls -altr'
 alias grep='grep -a'
 alias dirs='dirs -p'
 
+# git alias
+alias gvn='git svn'
+alias st='git st'
+alias df='git df'
+alias push='git push'
+alias pull='git pull'
+
 # dir colors
 eval $(dircolors -b ~/.dir_colors)
 
@@ -188,16 +195,31 @@ fi
 
 function myvi () {
 	file=$1
-	if [ -f ${file} ]; then
+	if [ $# -eq 0 ]; then
+		vi
+	elif [ -f ${file} ]; then
 		vi ${file}
 	else
 		dir=`dirname ${file}`
-		echo $dir
 		if [ ! -d ${dir} ]; then
 			mkdir -p ${dir}
 		fi
 		vi ${file}
 	fi
 }
+#alias vi=myvi
 
-alias vi='myvi'
+function google() {
+  local str opt 
+    if [ $# != 0 ]; then # 引数が存在すれば
+    for i in $*; do
+      str="$str+$i"
+      done
+      str=`echo $str | sed 's/^\+//'` #先頭の「+」を削除
+      opt='search?num=50&hl=ja&ie=euc-jp&oe=euc-jp&lr=lang_ja'
+      opt="${opt}&q=${str}"
+    fi
+  w3m http://www.google.co.jp/$opt #引数がなければ $opt は空になる
+    # mozilla -remote openURL\(http::/www.google.co.jp/$opt\) # 未テスト
+}
+alias ggl=google
