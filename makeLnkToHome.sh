@@ -10,7 +10,7 @@ do
        [ $homefile != '.git' ] && 
        [ $homefile != '.gitignore' ]
     then
-        ln -Fis "$PWD/$homefile" $HOME
+        ln -fs "$PWD/$homefile" $HOME
     fi
 done
 
