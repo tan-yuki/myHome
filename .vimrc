@@ -171,18 +171,18 @@ noremap <C->>> <C-w>10>
 " ======= My commands =====
 " =========================
 
-" on syntastic.vim
-function! SyntasticOff()
-  let g:syntastic_enable_signs=0
-  let g:syntastic_echo_current_error=0
-endfunction
-command! SyntasticOff :call SyntasticOff()
-
-" off syntastic.vim
-function! SyntasticOn()
-  let g:syntastic_enable_signs=1
-  let g:syntastic_echo_current_error=1
-endfunction
-command! SyntasticOn :call SyntasticOn()
-
-call SyntasticOff()
+"" on syntastic.vim
+"function! SyntasticOff()
+"  let g:syntastic_enable_signs=0
+"  let g:syntastic_echo_current_error=0
+"endfunction
+"command! SyntasticOff :call SyntasticOff()
+"
+"" off syntastic.vim
+"function! SyntasticOn()
+"  let g:syntastic_enable_signs=1
+"  let g:syntastic_echo_current_error=1
+"endfunction
+"command! SyntasticOn :call SyntasticOn()
+"
+"call SyntasticOff()
