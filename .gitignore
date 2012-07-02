@@ -16,6 +16,7 @@
 !/.dir_colors
 !/bin
 !/makeLnkToHome.sh
+!/.w3m
 /.vim/view
 /.vim/doc/tags
 /.vim/doc/tags-ja
