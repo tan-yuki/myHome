@@ -71,6 +71,11 @@ highlight Pmenu ctermbg=blue
 highlight PmenuSel ctermbg=red ctermfg=white
 highlight PmenuSbar ctermbg=white
 
+" ==== neocomplcache-snippets-complete
+let g:NeoComplCache_SnippetsDir = '~/.vim/snippets'
+imap <TAB> <Plug>neocomplcache#plugin#snippets_complete#expandable() ? "\(neocomplcache_snippets_expand)" : "\"
+smap <TAB> <Plug>neocomplcache#plugin#snippets_complete#expandable() ? "\(neocomplcache_snippets_expand)" : "\"
+
 
 " ==== pathogen
 call pathogen#runtime_append_all_bundles()
