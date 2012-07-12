@@ -2,8 +2,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=9999
 SAVEHIST=9999
-bindkey '^R' history-incremental-search-backward
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 
 # End of lines configured by zsh-newuser-install
@@ -35,11 +35,19 @@ alias grep='grep -a'
 alias dirs='dirs -p'
 
 # git alias
-alias gvn='git svn'
 alias st='git st'
 alias df='git df'
+alias add='git add'
+alias ci='git commit'
 alias push='git push'
 alias pull='git pull'
+alias stash='git stash'
+alias co='git checkout'
+
+# git svn alias
+alias gvn='git svn'
+alias gvn-ci='git stash && git svn dcommit && git stash pop'
+alias gvn-up='git svn rebase'
 
 # dir colors
 eval $(dircolors -b ~/.dir_colors)
