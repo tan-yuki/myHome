@@ -33,9 +33,6 @@ set listchars=tab:>.,trail:-,eol:$,nbsp:%,extends:\
 set ts=4
 set sw=4
 
-" - set file name in window title
-set title
-
 " - Prevent auto newline
 set textwidth=0
 
@@ -47,9 +44,6 @@ set nocompatible
 
 " - 検索をファイルの末尾まで検索したら、ファイルの先頭へループする。
 set wrapscan
-
-" - クリップボード共有（なぜか反映されない）
-set clipboard=unnamed
 
 " - Search words by caseignore
 set ignorecase
@@ -85,32 +79,15 @@ highlight PmenuSbar ctermbg=white
 
 " ==== neocomplcache-snippets-complete
 let g:NeoComplCache_SnippetsDir = '~/.vim/snippets'
-imap <expr><TAB> pumvisible() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<CR>"
-smap <expr><TAB> pumvisible() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<CR>"
 
 " ==== pathogen
 call pathogen#runtime_append_all_bundles()
 
 " ==== twitvim
 let g:twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
-let g:twitvim_browser_cmd = 'open -a /Applications/Google\ Chrome.app/'
-let twitvim_proxy = 'http://lms.mytrip.net:3128'
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
-
-" ==== QFix App
-set runtimepath+=~/.vim/qfixapp/
-let QFixHowm_Key         = 'g'
-let howm_dir             = '~/howm'
-let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-let howm_fileencoding    = 'utf-8'
-let howm_fileformat      = 'unix'
-let mygrepprg            = 'grep'
-let $CYGWIN              = 'nodosfilewarning'
-let MyGrep_ShellEncoding = 'utf-8'
-au QuickfixCmdPost vimgrep cw
-
 
 " ========================
 " ======= Some Tips ======
@@ -120,11 +97,6 @@ au QuickfixCmdPost vimgrep cw
 highlight Comment ctermfg=DarkCyan
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
-
-" ==== Define file type
-au BufRead,BufNewFile *.sql set filetype=sql
-au BufRead,BufNewFile *.case set filetype=html
-au BufRead,BufNewFile *.vim set filetype=vim
 
 " ==== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
@@ -181,24 +153,3 @@ noremap <C-w>+ <C-w>10+
 noremap <C-w>- <C-w>10-
 noremap <C-<>< <C-w>10<
 noremap <C->>> <C-w>10>
-
-
-" =========================
-" ======= My commands =====
-" =========================
-
-"" on syntastic.vim
-"function! SyntasticOff()
-"  let g:syntastic_enable_signs=0
-"  let g:syntastic_echo_current_error=0
-"endfunction
-"command! SyntasticOff :call SyntasticOff()
-"
-"" off syntastic.vim
-"function! SyntasticOn()
-"  let g:syntastic_enable_signs=1
-"  let g:syntastic_echo_current_error=1
-"endfunction
-"command! SyntasticOn :call SyntasticOn()
-"
-"call SyntasticOff()
