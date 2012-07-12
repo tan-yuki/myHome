@@ -63,7 +63,19 @@ set notitle
 " ===========================
 
 " ==== neocomplcache
-let g:neocomplcache_enable_at_startup = 1    "on neocomplcache setting
+let g:neocomplcache_enable_at_startup = 1    " on neocomplcache setting
+let g:neocomplcache_enable_smart_case = 1    " case ignore
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_max_list = 20            " max size of menu list
+let g:neocomplcache_min_syntax_length = 3
+
+" dictionaries for neocomple
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default'    : '',
+    \ 'php'        : $HOME . '/.vim/dict/php.dict',
+    \ 'javascript' : $HOME . '/.vim/dict/javascript.dict',
+    \ }
+
 inoremap <C-Space> <C-N><C-P>
 inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
 inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
@@ -73,9 +85,8 @@ highlight PmenuSbar ctermbg=white
 
 " ==== neocomplcache-snippets-complete
 let g:NeoComplCache_SnippetsDir = '~/.vim/snippets'
-imap <TAB> <Plug>neocomplcache#plugin#snippets_complete#expandable() ? "\(neocomplcache_snippets_expand)" : "\"
-smap <TAB> <Plug>neocomplcache#plugin#snippets_complete#expandable() ? "\(neocomplcache_snippets_expand)" : "\"
-
+imap <expr><TAB> pumvisible() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<CR>"
+smap <expr><TAB> pumvisible() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<CR>"
 
 " ==== pathogen
 call pathogen#runtime_append_all_bundles()
