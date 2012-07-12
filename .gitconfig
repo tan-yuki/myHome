@@ -1,26 +1,8 @@
 [alias]
-  ########## Refer: http://d.hatena.ne.jp/os0x/20120220/1329750795
-
-	#### checkout長い…
 	co = checkout
-
-	#### シンプルなstatus
 	st = status -s
-
-	#### pull するときにmergeコミットを作らない
-	pr = pull --rebase
-
-	#### branchでfoしてroすればmasterにrebaseできる
-	fo = fetch origin
-	ro = rebase origin
-
-	#### 単語単位のdiff
-	rc = rebase --continue
-	wd = diff --word-diff
-
-	lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
-
-	df = diff --color-words
+	df = diff --word-diff=color
+	df-narrow = diff --word-diff=color --word-diff-regex=.
 
 [user]
 	name = tanakayuki
