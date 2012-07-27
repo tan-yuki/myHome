@@ -1,2 +1,0 @@
-#!/bin/sh
-nohup "C:/Program Files/Microsoft Office/OFFICE11/OUTLOOK.EXE" /profile "New(@mail.rakuten.com)"  > /dev/null  2>&1 &

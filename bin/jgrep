@@ -1,7 +1,0 @@
-#!/bin/sh
-if [ $# != 2 ];then
-  echo "[Usage] $0 (search sentence) (file or dir)"
-  exit
-fi
-
-grep -nr `echo $1 | nkf -s` $2 | nkf -w
