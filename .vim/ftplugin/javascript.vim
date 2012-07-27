@@ -1,4 +1,3 @@
-set expandtab
+setlocal expandtab
+setlocal ts=4
 compiler javascriptlint
-set expandtab
-set ts=4
