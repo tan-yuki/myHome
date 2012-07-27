@@ -231,3 +231,14 @@ function google() {
     # mozilla -remote openURL\(http::/www.google.co.jp/$opt\) # 未テスト
 }
 alias ggl=google
+
+
+# shell scripts utils
+util_home=${HOME}/bin/utils
+if [ -d ${util_home} ]; then
+	# load utils function
+	for file in `ls ${util_home}`
+	do
+		. ${util_home}/${file}
+	done
+fi
