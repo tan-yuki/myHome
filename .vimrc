@@ -1,4 +1,5 @@
 syntax on
+filetype on
 filetype plugin on
 filetype indent on
 
@@ -6,6 +7,7 @@ filetype indent on
 " ===============================
 " ===== Environment settings ====
 " ===============================
+set nocompatible
 
 " - display cursor line
 set cursorline
