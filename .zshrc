@@ -49,9 +49,6 @@ alias gvn='git svn'
 alias gvn-ci='git stash && git svn dcommit && git stash pop'
 alias gvn-up='git svn rebase'
 
-# dir colors
-eval $(dircolors -b ~/.dir_colors)
-
 # custom_color.sh
 autoload colors
 colors
