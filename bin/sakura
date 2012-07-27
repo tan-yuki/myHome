@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]; then
+    nohup /c/Program\ Files/sakura/sakura.exe > /dev/null 2>&1 &
+else
+    nohup /c/Program\ Files/sakura/sakura.exe "/cygwin/"$1 > /dev/null 2>&1 &
+fi
+
+
+
