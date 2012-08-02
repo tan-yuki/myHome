@@ -1,8 +1,19 @@
+" ===================================================================
+"  Vim settings
+"    - Plugins:                   .vim/bundle/
+"    - Filetype definitions:      .vim/filetype.vim
+"    - Dictionaries:              .vim/dict/
+"    - Snippets:                  .vim/snippets/
+"
+"
+"  Other some useful vim settings in in here, maybe.
+"  Enjoy your vim life !
+" ===================================================================
+
 syntax on
 filetype on
 filetype plugin on
 filetype indent on
-
 
 " ===============================
 " ===== Environment settings ====
@@ -155,3 +166,9 @@ noremap <C-w>+ <C-w>10+
 noremap <C-w>- <C-w>10-
 noremap <C-<>< <C-w>10<
 noremap <C->>> <C-w>10>
+
+
+" ========================================
+"  color settings
+" ========================================
+hi Comment ctermfg=8
