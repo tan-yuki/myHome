@@ -172,3 +172,7 @@ noremap <C->>> <C-w>10>
 "  color settings
 " ========================================
 hi Comment ctermfg=8
+
+" Popup menu
+hi Pmenu ctermfg=white
+hi PmenuSel ctermbg=lightcyan ctermfg=black
