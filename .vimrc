@@ -111,6 +111,12 @@ highlight Comment ctermfg=DarkCyan
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 
+" ==== Define file type
+au BufRead,BufNewFile *.sql  set filetype=sql
+au BufRead,BufNewFile *.case set filetype=html
+au BufRead,BufNewFile *.scss set filetype=css
+au BufRead,BufNewFile *.vim  set filetype=vim
+
 " ==== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
@@ -176,3 +182,13 @@ hi Comment ctermfg=8
 " Popup menu
 hi Pmenu ctermfg=white
 hi PmenuSel ctermbg=lightcyan ctermfg=black
+noremap <C-w>- 10<C-w>-
+noremap <C-<>< 10<C-w><
+noremap <C->>> 10<C-w>>
+
+
+" Ruby is too Heavy !!!
+let g:ruby_path = ""
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+>>>>>>> resolved heavy process for ruby and some debug&improvement
