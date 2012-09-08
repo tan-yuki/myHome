@@ -17,6 +17,7 @@
 !/bin
 !/makeLnkToHome.sh
 !/.w3m
+!/.tmux.conf
 /.vim/view
 /.vim/doc/tags
 /.vim/doc/tags-ja
