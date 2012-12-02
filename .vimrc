@@ -68,6 +68,34 @@ set notitle
 " ===========================
 " ======= Each plugins ======
 " ===========================
+"
+" ==== neobundle
+set nocompatible
+filetype off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+NeoBundle 'L9'
+NeoBundle 'rails.vim'
+NeoBundle 'surround.vim'
+NeoBundle 'mru.vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'hrp/EnhancedCommentify'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'hekyou/vim-rectinsert'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'tyru/vim-altercmd'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/neosnippet'
+
+filetype plugin indent on
 
 " ==== neocomplcache
 let g:neocomplcache_enable_at_startup = 1    " on neocomplcache setting
@@ -102,12 +130,13 @@ let g:twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
 
+
 " ========================
 " ======= Some Tips ======
 " ========================
 
-" ==== Syntax highlight
-highlight Comment ctermfg=DarkCyan
+" ==== Syntax highight
+hi Comment ctermfg=gray
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 
@@ -177,7 +206,6 @@ noremap <C->>> <C-w>10>
 " ========================================
 "  color settings
 " ========================================
-hi Comment ctermfg=8
 
 " Popup menu
 hi Pmenu ctermfg=white
@@ -191,3 +219,14 @@ noremap <C->>> 10<C-w>>
 let g:ruby_path = ""
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+
+set t_Co=256
+
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif

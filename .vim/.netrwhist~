@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/tanakayuuki/workingspace/fCalendar/app/assets'
+let g:netrw_dirhist_2='/Users/tanakayuuki/workingspace/fcal/config'
+let g:netrw_dirhist_3='/Users/tanakayuuki/myHome/.vim/bundle/presentation/plugin'
