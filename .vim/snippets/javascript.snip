@@ -1,9 +1,57 @@
-snippet jQ(
-    $(function(${2}) {
-        ${1:body...}
-    })(${1});
+snippet $(fun
+    $(function() {
+        ${1:#body...}
+    })
 
+snippet func
+    /**
+     * 
+     * @param
+     * @return
+     */
+    var ${1:#name} = function(${2:#args}) {
+        ${3:#contents}
+    };
 
+snippet for
+    for (var i = 0, len = ${1:#list}.length; i < len; i++) {
+        ${2:#contents}
+    }
 
+snippet forin
+    for (var ${1:#key} in ${2:#map}) {
+        ${3:#contents}
+    }
+
+snippet if
+    if (${1:#conditions}) {
+        ${2:#contents}
+    }
+
+snippet $(
+    $(${1:#selector})
+
+snippet setTimeout
+    setTimeout(function() {
+        ${2:contents}
+    }, ${1:msec});
+
+snippet class
+    /**
+     * ${1:#jsdoc}
+     */
+    var ${2:#name} = function() {
+        this.init.apply(this, arguments);
+    };
+
+    $2.prototype = {
+
+        /**
+         * Constructor
+         */
+        init: function(${3:#args}) {
+            ${4:#constructor}
+        }
+    };
 
 
