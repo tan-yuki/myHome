@@ -236,9 +236,8 @@ alias ggl=google
 # shell scripts utils
 . ${HOME}/bin/require_utils.sh
 
-#=============================
-# source zsh-syntax-highlighting
-#=============================
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+
+# antigen settings
+source ${HOME}/antigen/antigen.zsh
+antigen-bundle zsh-users/zsh-syntax-highlighting
+
