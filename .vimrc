@@ -1,15 +1,3 @@
-" ===================================================================
-"  Vim settings
-"    - Plugins:                   .vim/bundle/
-"    - Filetype definitions:      .vim/filetype.vim
-"    - Dictionaries:              .vim/dict/
-"    - Snippets:                  .vim/snippets/
-"
-"
-"  Other some useful vim settings in in here, maybe.
-"  Enjoy your vim life !
-" ===================================================================
-
 syntax on
 filetype on
 filetype plugin on
@@ -94,6 +82,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'tyru/vim-altercmd'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'rhysd/neco-ruby-keyword-args'
 
 filetype plugin indent on
 
@@ -118,8 +107,23 @@ highlight Pmenu ctermbg=blue
 highlight PmenuSel ctermbg=red ctermfg=white
 highlight PmenuSbar ctermbg=white
 
-" ==== neocomplcache-snippets-complete
-let g:NeoComplCache_SnippetsDir = '~/.vim/snippets'
+" ==== neosnippet
+"Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Directory of snippet setting files
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 " ==== pathogen
 call pathogen#runtime_append_all_bundles()

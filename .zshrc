@@ -28,6 +28,9 @@ export JSTESTDRIVER_HOME=$HOME/bin
 export VIMHOME=$HOME/.vim/
 
 
+# vim setting
+
+
 alias ls="ls --color=auto"
 alias rm='rm -i'
 alias ll='ls -altr'
@@ -232,3 +235,10 @@ alias ggl=google
 
 # shell scripts utils
 . ${HOME}/bin/require_utils.sh
+
+#=============================
+# source zsh-syntax-highlighting
+#=============================
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
