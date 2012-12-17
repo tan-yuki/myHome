@@ -58,7 +58,6 @@ set notitle
 " ===========================
 "
 " ==== neobundle
-set nocompatible
 filetype off
 
 if has('vim_starting')
@@ -68,12 +67,11 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundle 'L9'
-NeoBundle 'rails.vim'
+NeoBundle 'tpope/vim-rails'
 NeoBundle 'surround.vim'
 NeoBundle 'mru.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'hrp/EnhancedCommentify'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'hekyou/vim-rectinsert'
 NeoBundle 'vim-ruby/vim-ruby'
@@ -83,6 +81,7 @@ NeoBundle 'tyru/vim-altercmd'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'rhysd/neco-ruby-keyword-args'
+NeoBundle 'FuzzyFinder'
 
 filetype plugin indent on
 
@@ -125,11 +124,6 @@ endif
 " Directory of snippet setting files
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 
-" ==== pathogen
-call pathogen#runtime_append_all_bundles()
-
-" ==== twitvim
-let g:twitvim_login_b64 = 'dGFuX3l1a2k6b3IzS0lPc2Y='
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
@@ -138,6 +132,9 @@ vmap <silent> <leader>vp <Plug>:RectInsert -i
 " ========================
 " ======= Some Tips ======
 " ========================
+
+" Ctrl + p => paste 0 register
+vnoremap <silent> <C-p> "0p<CR>
 
 " ==== Syntax highight
 hi Comment ctermfg=gray
