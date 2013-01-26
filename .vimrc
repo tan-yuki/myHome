@@ -82,6 +82,8 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'rhysd/neco-ruby-keyword-args'
 NeoBundle 'FuzzyFinder'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'jiangmiao/simple-javascript-indenter.git'
 
 filetype plugin indent on
 

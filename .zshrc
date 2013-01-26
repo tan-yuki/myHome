@@ -236,8 +236,3 @@ alias ggl=google
 # shell scripts utils
 . ${HOME}/bin/require_utils.sh
 
-
-# antigen settings
-source ${HOME}/antigen/antigen.zsh
-antigen-bundle zsh-users/zsh-syntax-highlighting
-
