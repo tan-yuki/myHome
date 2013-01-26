@@ -131,6 +131,10 @@ let g:neosnippet#snippets_directory='~/.vim/snippets'
 vmap <silent> <leader>vp <Plug>:RectInsert -i
 
 
+" ===== Simple-Javascript-Indenter settings
+let g:SimpleJsIndenter_BriefMode = 1
+let g:SimpleJsIndenter_CaseIndentLevel = -1
+
 " ========================
 " ======= Some Tips ======
 " ========================
