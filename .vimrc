@@ -52,7 +52,6 @@ set ignorecase
 set notitle
 
 
-
 " ===========================
 " ======= Each plugins ======
 " ===========================
@@ -67,7 +66,6 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundle 'L9'
-NeoBundle 'tpope/vim-rails'
 NeoBundle 'surround.vim'
 NeoBundle 'mru.vim'
 NeoBundle 'scrooloose/nerdtree'
@@ -84,6 +82,7 @@ NeoBundle 'rhysd/neco-ruby-keyword-args'
 NeoBundle 'FuzzyFinder'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'jiangmiao/simple-javascript-indenter.git'
+NeoBundle 'sjl/gundo.vim.git'
 
 filetype plugin indent on
 
@@ -129,6 +128,13 @@ let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
+
+" ===== Simple-Javascript-Indenter
+let g:SimpleJsIndenter_BriefMode = 1
+let g:SimpleJsIndenter_CaseIndentLevel = -1
+
+" ===== gundo.vim
+nnoremap <F5> :GundoToggle<CR>
 
 
 " ===== Simple-Javascript-Indenter settings
@@ -237,3 +243,8 @@ if neobundle#exists_not_installed_bundles()
   echomsg 'Please execute ":NeoBundleInstall" command.'
   "finish
 endif
+
+" ========================================
+"  key mapping
+" ========================================
+nmap <C-t> :NERDTree<CR>
