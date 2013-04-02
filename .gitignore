@@ -22,3 +22,5 @@
 /.vim/doc/tags
 /.vim/doc/tags-ja
 /.vim/.netrwhist
+/.vim/bundle/
+!/.vim/bundle/neobundle.vim
