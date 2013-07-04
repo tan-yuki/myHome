@@ -5,6 +5,7 @@ SAVEHIST=9999
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -13,7 +14,7 @@ zstyle :compinstall filename "${HOME}/.zshrc"
 # 補完
 ## 初期化
 autoload -U compinit
-compinit
+compinit -u
 
 # End of lines added by compinstall
 
@@ -31,10 +32,9 @@ export VIMHOME=$HOME/.vim/
 # vim setting
 
 
-alias ls="ls --color=auto"
+alias ls="ls --color"
 alias rm='rm -i'
 alias ll='ls -altr'
-alias grep='grep -a'
 alias dirs='dirs -p'
 
 # git alias
@@ -97,6 +97,8 @@ setopt mark_dirs
 # enable to display Japanese file name
 setopt print_eight_bit
 
+setopt prompt_subst
+
 # delete word to "/" on Ctrl+w
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
@@ -111,12 +113,27 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 
 ### Prompt Setting
-	 PROMPT="%{${fg[green]}%}%n@%m %%%{${reset_color}%} "
-	 PROMPT2="%{${fg[green]}%}%_%%%{${reset_color}%} "
-  RPROMPT="%{${fg[yellow]}%}[%~]%{${reset_color}%}"
-	 SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-	 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-		 PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+function rprompt-git-current-branch {
+  local name st color
+
+  if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+          return
+  fi
+  name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+  if [[ -z $name ]]; then
+          return
+  fi
+  color=${fg[green]}
+
+  # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
+  # これをしないと右プロンプトの位置がずれる
+  echo "%{$color%}($name)%{$reset_color%} "
+}
+PROMPT="%{${fg[green]}%}[%n@mac-mini] %%%{${reset_color}%} "
+RPROMPT="%{${fg[yellow]}%}[`rprompt-git-current-branch`%{${fg[yellow]}%}%~]%{${reset_color}%}"
+precmd() {
+  RPROMPT="%{${fg[yellow]}%}[`rprompt-git-current-branch`%{${fg[yellow]}%}%~]%{${reset_color}%}"
+}
 
 
 ## 補完方法毎にグループ化する。
@@ -236,3 +253,47 @@ alias ggl=google
 # shell scripts utils
 . ${HOME}/bin/require_utils.sh
 
+# nvm 
+source ~/.nvm/nvm.sh
+nvm use v0.8.23 > /dev/null
+
+# tmux solarized
+set -g default-terminal "screen-256color"
+
+
+# cd で移動後に実行
+chpwd() {
+    ls_abbrev
+}
+ls_abbrev() {
+    # -a : Do not ignore entries starting with ..
+    # -C : Force multi-column output.
+    # -F : Append indicator (one of */=>@|) to entries.
+    local cmd_ls='ls'
+    local -a opt_ls
+    opt_ls=('-aCF' '--color=always')
+    case "${OSTYPE}" in
+        freebsd*|darwin*)
+            if type gls > /dev/null 2>&1; then
+                cmd_ls='gls'
+            else
+                # -G : Enable colorized output.
+                opt_ls=('-aCFG')
+            fi
+            ;;
+    esac
+
+    local ls_result
+    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
+
+    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
+
+    if [ $ls_lines -gt 10 ]; then
+        echo "$ls_result" | head -n 5
+        echo '...'
+        echo "$ls_result" | tail -n 5
+        echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
+    else
+        echo "$ls_result"
+    fi
+}

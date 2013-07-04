@@ -3,6 +3,8 @@ filetype on
 filetype plugin on
 filetype indent on
 
+set backupskip=/tmp/*,/private/tmp/*
+
 " ===============================
 " ===== Environment settings ====
 " ===============================
@@ -23,7 +25,7 @@ set virtualedit=block
 set encoding=utf-8
 set fileencodings=utf-8,sjis,cp932,iso-2022-jp,euc-jp
 
-" - show line number
+" - Not show line number
 set nu
 
 " - visible empty chars
@@ -50,6 +52,15 @@ set wrapscan
 set ignorecase
 
 set notitle
+
+
+" ==== tabs
+nnoremap tt  :tabedit<CR>
+nnoremap tn  :tabNext<CR>
+nnoremap tp  :tabprevious<CR>
+nnoremap tq  :tabclose<CR>
+nnoremap tl  :tabs<CR>
+
 
 
 " ===========================
@@ -83,6 +94,28 @@ NeoBundle 'FuzzyFinder'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'jiangmiao/simple-javascript-indenter.git'
 NeoBundle 'sjl/gundo.vim.git'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'taglist.vim'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'mattn/habatobi-vim'
+NeoBundle 'arnaud-lb/vim-php-namespace'
+NeoBundle 'fuenor/qfixgrep'
+
+set rtp+=~/.vim/bundle/powerline/bindings/vim
+set noshowmode
+
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif
 
 filetype plugin indent on
 
@@ -133,6 +166,12 @@ vmap <silent> <leader>vp <Plug>:RectInsert -i
 let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
 
+" ===== vim-colors-solarized
+"let g:solarized_termcolors=256
+"syntax enable
+"set background=dark
+"colorscheme solarized
+
 " ===== gundo.vim
 nnoremap <F5> :GundoToggle<CR>
 
@@ -141,12 +180,60 @@ nnoremap <F5> :GundoToggle<CR>
 let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
 
+
+" ===== taglist.vim
+set tags=tags
+let g:Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8/bin/ctags"
+
+" ===== ref.vim
+nmap ,rp :Ref phpmanual<Space>
+let g:ref_phpmanual_path = $HOME . "/.vim/ref/php/"
+
+" ===== quickrun
+let g:quickrun_config = {}
+let g:quickrun_config.markdown = {
+      \ 'outputter' : 'null',
+      \ 'command'   : 'open',
+      \ 'cmdopt'    : '-a',
+      \ 'args'      : 'Marked',
+      \ 'exec'      : '%c %o %a %s',
+      \ }
+
+" ===== gitv
+autocmd FileType gitv call s:my_gitv_settings()
+function! s:my_gitv_settings()
+  setlocal iskeyword+=/,-,.
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+  
+  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
+  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
+  
+  nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_git_folding()<CR>1<C-w>w
+endfunction
+
+function! s:gitv_get_current_hash()
+  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+endfunction
+
+autocmd FileType git setlocal nofoldenable foldlevel=0
+function! s:toggle_git_folding()
+  if &filetype ==# 'git'
+    setlocal foldenable!
+  endif
+endfunction
+
+" ===== ctrlp.vim
+let g:ctrlp_use_migemo = 1
+let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
+let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
+let g:ctrlp_open_new_file       = 1   " 新規ファイル作成時にタブで開く
+
 " ========================
 " ======= Some Tips ======
 " ========================
 
-" Ctrl + p => paste 0 register
-vnoremap <silent> <C-p> "0p<CR>
 
 " ==== Syntax highight
 hi Comment ctermfg=gray
@@ -158,6 +245,7 @@ au BufRead,BufNewFile *.sql  set filetype=sql
 au BufRead,BufNewFile *.case set filetype=html
 au BufRead,BufNewFile *.scss set filetype=css
 au BufRead,BufNewFile *.vim  set filetype=vim
+au BufRead,BufNewFile *.md   set filetype=markdown
 
 " ==== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
@@ -210,41 +298,49 @@ endfunction
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 
 " ==== Expand window
-noremap <C-w>+ <C-w>10+
-noremap <C-w>- <C-w>10-
-noremap <C-<>< <C-w>10<
-noremap <C->>> <C-w>10>
+noremap <C-w>+ 10<C-w>+
+noremap <C-w>- 10<C-w>-
+noremap <C-<>< 10<C-w><
+noremap <C->>> 10<C-w>>
+
+" ==== Not delete blank line
+nnoremap o oX<C-h>
+nnoremap O OX<C-h>
+inoremap <C-n> <Esc>oX<C-h>
+
+" ==== vimdiff - dismiss white characters
+"set diffopt=iwhite
+
+" ==== Searchの色がとっても見にくいので変更
+" IncSearchと一緒にする
+highlight link TagListTagName TODO
 
 
 " ========================================
 "  color settings
 " ========================================
 
+set t_Co=256
+
 " Popup menu
 hi Pmenu ctermfg=white
 hi PmenuSel ctermbg=lightcyan ctermfg=black
+
+
+" ========================================
+"  key bindings
+" ========================================
 noremap <C-w>- 10<C-w>-
 noremap <C-<>< 10<C-w><
 noremap <C->>> 10<C-w>>
 
 
 " Ruby is too Heavy !!!
-let g:ruby_path = ""
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+"let g:ruby_path = ""
+"autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+"autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
+" very magick search
+nnoremap /  /\v
 
-set t_Co=256
-
-" Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  "finish
-endif
-
-" ========================================
-"  key mapping
-" ========================================
-nmap <C-t> :NERDTree<CR>
+set laststatus=2

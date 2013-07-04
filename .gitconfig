@@ -3,6 +3,9 @@
 	st = status -s
 	df = diff --word-diff=color
 	df-narrow = diff --word-diff=color --word-diff-regex=.
+	df-files = diff --name-only
+	lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar%Creset'
+	mg = merge
 
 [user]
 	name = tanakayuki
@@ -10,5 +13,7 @@
 [core]
 	excludesfile = ./.gitignore
 	pager = lv -c
+	filemode = false
+	autocrlf = false
 [diff]
 	tool = vimdiff
