@@ -76,38 +76,49 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundle 'L9'
-NeoBundle 'surround.vim'
-NeoBundle 'mru.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'hrp/EnhancedCommentify'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'hekyou/vim-rectinsert'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'tyru/vim-altercmd'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'rhysd/neco-ruby-keyword-args'
 NeoBundle 'FuzzyFinder'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'jiangmiao/simple-javascript-indenter.git'
-NeoBundle 'sjl/gundo.vim.git'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'taglist.vim'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'L9'
+NeoBundle 'LeafCage/foldCC'
 NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'arnaud-lb/vim-php-namespace'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'gregsexton/gitv'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'hekyou/vim-rectinsert'
+NeoBundle 'hrp/EnhancedCommentify'
+NeoBundle 'jiangmiao/simple-javascript-indenter.git'
+NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/habatobi-vim'
-NeoBundle 'arnaud-lb/vim-php-namespace'
-NeoBundle 'fuenor/qfixgrep'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mru.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'rhysd/neco-ruby-keyword-args'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sjl/gundo.vim.git'
+NeoBundle 'surround.vim'
+NeoBundle 'taglist.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tyru/vim-altercmd'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundleCheck
+
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
 set noshowmode
+
+filetype plugin indent on
 
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -117,14 +128,13 @@ if neobundle#exists_not_installed_bundles()
   "finish
 endif
 
-filetype plugin indent on
-
 " ==== neocomplcache
-let g:neocomplcache_enable_at_startup = 1    " on neocomplcache setting
+let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_smart_case = 1    " case ignore
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_max_list = 20            " max size of menu list
 let g:neocomplcache_min_syntax_length = 3
+
 
 " dictionaries for neocomple
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -179,7 +189,6 @@ nnoremap <F5> :GundoToggle<CR>
 " ===== Simple-Javascript-Indenter settings
 let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
-
 
 " ===== taglist.vim
 set tags=tags
@@ -315,6 +324,18 @@ inoremap <C-n> <Esc>oX<C-h>
 " IncSearchと一緒にする
 highlight link TagListTagName TODO
 
+" ==== coffeescript setting
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+
+" ==== indent guides
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_color_change_percent=20
+let g:indent_guides_guide_size=1
+let g:indent_guides_space_guides=1
+
 
 " ========================================
 "  color settings
@@ -334,13 +355,24 @@ noremap <C-w>- 10<C-w>-
 noremap <C-<>< 10<C-w><
 noremap <C->>> 10<C-w>>
 
+set t_Co=256
 
-" Ruby is too Heavy !!!
-"let g:ruby_path = ""
-"autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-"autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+" ========================================
+"  fold setting
+" ========================================
+set foldmethod=marker
+set foldtext=FoldCCtext()
+set foldcolumn=5
+set fillchars=vert:\|
+set commentstring=%s
 
-" very magick search
-nnoremap /  /\v
 
-set laststatus=2
+" ========================================
+"  clip bord
+" ========================================
+set clipboard=unnamed,autoselect
+
+" ========================================
+"  .vimrc short cut
+" ========================================
+nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>

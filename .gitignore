@@ -18,6 +18,7 @@
 !/makeLnkToHome.sh
 !/.w3m
 !/.tmux.conf
+!/antigen
 /.vim/view
 /.vim/doc/tags
 /.vim/doc/tags-ja
