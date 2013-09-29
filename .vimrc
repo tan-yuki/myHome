@@ -53,6 +53,10 @@ set ignorecase
 
 set notitle
 
+set expandtab
+
+" - 正規表現
+set regexpengine=0
 
 " ==== tabs
 nnoremap tt  :tabedit<CR>
@@ -83,24 +87,26 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'arnaud-lb/vim-php-namespace'
-NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'gregsexton/gitv'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'hekyou/vim-rectinsert'
 NeoBundle 'hrp/EnhancedCommentify'
 NeoBundle 'jiangmiao/simple-javascript-indenter.git'
 NeoBundle 'kana/vim-fakeclip'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/habatobi-vim'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mru.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'rhysd/neco-ruby-keyword-args'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'sjl/gundo.vim.git'
 NeoBundle 'surround.vim'
@@ -109,9 +115,10 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-rails'
 NeoBundle 'tyru/vim-altercmd'
-NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
 NeoBundleCheck
 
 
@@ -128,27 +135,6 @@ if neobundle#exists_not_installed_bundles()
   "finish
 endif
 
-" ==== neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1    " case ignore
-let g:neocomplcache_enable_underbar_completion = 1
-let g:neocomplcache_max_list = 20            " max size of menu list
-let g:neocomplcache_min_syntax_length = 3
-
-
-" dictionaries for neocomple
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default'    : '',
-    \ 'php'        : $HOME . '/.vim/dict/php.dict',
-    \ 'javascript' : $HOME . '/.vim/dict/javascript.dict',
-    \ }
-
-inoremap <C-Space> <C-N><C-P>
-inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
-inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
-highlight Pmenu ctermbg=blue
-highlight PmenuSel ctermbg=red ctermfg=white
-highlight PmenuSbar ctermbg=white
 
 " ==== neosnippet
 "Plugin key-mappings.
@@ -200,13 +186,12 @@ let g:ref_phpmanual_path = $HOME . "/.vim/ref/php/"
 
 " ===== quickrun
 let g:quickrun_config = {}
-let g:quickrun_config.markdown = {
-      \ 'outputter' : 'null',
-      \ 'command'   : 'open',
-      \ 'cmdopt'    : '-a',
-      \ 'args'      : 'Marked',
-      \ 'exec'      : '%c %o %a %s',
-      \ }
+let g:quickrun_config = {
+  \   'markdown': {
+  \     'type': 'markdown/gfm',
+  \     'outputter': 'browser'
+  \   }
+  \ }
 
 " ===== gitv
 autocmd FileType gitv call s:my_gitv_settings()
@@ -238,6 +223,50 @@ let g:ctrlp_use_migemo = 1
 let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
 let g:ctrlp_open_new_file       = 1   " 新規ファイル作成時にタブで開く
+
+" ==== neocomplcache
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default'    : '',
+    \ 'php'        : $HOME . '/.vim/dict/php.dict',
+    \ 'javascript' : $HOME . '/.vim/dict/javascript.dict',
+    \ }
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplcache#smart_close_popup()
+" endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+inoremap <C-Space> <C-N><C-P>
+inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
+inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
+highlight Pmenu ctermbg=blue
+highlight PmenuSel ctermbg=red ctermfg=white
+highlight PmenuSbar ctermbg=white
 
 " ========================
 " ======= Some Tips ======
