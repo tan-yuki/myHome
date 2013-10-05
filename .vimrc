@@ -55,6 +55,8 @@ set notitle
 
 set expandtab
 
+set undolevels=9999
+
 " - 正規表現
 set regexpengine=0
 
