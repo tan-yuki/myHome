@@ -17,6 +17,7 @@
 !/bin
 !/makeLnkToHome.sh
 !/.w3m
+!/_go
 !/.tmux.conf
 !/antigen
 /.vim/view

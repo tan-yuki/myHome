@@ -405,3 +405,9 @@ set clipboard=unnamed,autoselect
 "  .vimrc short cut
 " ========================================
 nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
+
+
+" go lang
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+endif

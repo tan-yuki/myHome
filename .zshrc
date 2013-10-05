@@ -225,4 +225,6 @@ nvm use v0.8.23 > /dev/null
 # tmux solarized
 set -g default-terminal "screen-256color"
 
-
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/_go
+export PATH=$PATH:$GOROOT/bin
