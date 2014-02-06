@@ -62,6 +62,13 @@ set showtabline=2
 " - 常に下2行開けておく
 set laststatus=2
 
+set expandtab
+
+set undolevels=9999
+
+" - 正規表現
+set regexpengine=0
+
 " ==== tabs
 
 " The prefix key.
@@ -97,61 +104,70 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 
-NeoBundle 'L9'
-NeoBundle 'surround.vim'
-NeoBundle 'mru.vim'
-NeoBundle 'hrp/EnhancedCommentify'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'hekyou/vim-rectinsert'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'mattn/zencoding-vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'tyru/vim-altercmd'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'rhysd/neco-ruby-keyword-args'
-NeoBundle 'FuzzyFinder'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'jiangmiao/simple-javascript-indenter.git'
-NeoBundle 'sjl/gundo.vim.git'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'taglist.vim'
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'Lokaltog/vim-powerline'
-"NeoBundle 'stephenmckinney/vim-solarized-powerline'
 "NeoBundle 'bling/vim-airline'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'gregsexton/gitv'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'mattn/habatobi-vim'
-NeoBundle 'arnaud-lb/vim-php-namespace'
-NeoBundle 'fuenor/qfixgrep'
+"NeoBundle 'stephenmckinney/vim-solarized-powerline'
 "NeoBundle 'thinca/vim-splash'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'vim-scripts/SQLUtilities'
-NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'goldfeld/vim-seek'
-NeoBundle 'deris/vim-duzzle'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'kmnk/vim-unite-giti'
-NeoBundle 'AndrewRadev/linediff.vim'
-NeoBundle 'itchyny/calendar.vim'
-NeoBundle 'gregsexton/gitv'
 NeoBundle 'Align'
-NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'nono/vim-handlebars'
+NeoBundle 'AndrewRadev/linediff.vim'
+NeoBundle 'FuzzyFinder'
+NeoBundle 'L9'
+NeoBundle 'LeafCage/foldCC'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
       \     'cygwin' : 'make -f make_cygwin.mak',
       \     'mac' : 'make -f make_mac.mak',
       \     'unix' : 'make -f make_unix.mak',
+      \     'windows' : 'make -f make_mingw32.mak',
       \    },
       \ }
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'arnaud-lb/vim-php-namespace'
+NeoBundle 'deris/vim-duzzle'
+NeoBundle 'fuenor/qfixgrep'
+NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'hekyou/vim-rectinsert'
+NeoBundle 'hrp/EnhancedCommentify'
+NeoBundle 'itchyny/calendar.vim'
+NeoBundle 'jiangmiao/simple-javascript-indenter.git'
+NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'mattn/habatobi-vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mru.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nono/vim-handlebars'
+NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'rhysd/neco-ruby-keyword-args'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'sjl/gundo.vim.git'
+NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
+NeoBundle 'surround.vim'
+NeoBundle 'taglist.vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'tyru/vim-altercmd'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'vim-scripts/SQLUtilities'
+NeoBundleCheck
+
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
 set noshowmode
+
+filetype plugin indent on
 
 " Installation check.
 if neobundle#exists_not_installed_bundles()
@@ -188,25 +204,6 @@ highlight Pmenu ctermbg=blue
 highlight PmenuSel ctermbg=red ctermfg=white
 highlight PmenuSbar ctermbg=white
 
-" ==== neosnippet
-"Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Directory of snippet setting files
-let g:neosnippet#snippets_directory='~/.vim/snippets'
-
-
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
 
@@ -218,17 +215,17 @@ let g:SimpleJsIndenter_CaseIndentLevel = -1
 let g:SimpleJsIndenter_BriefMode = 1
 let g:SimpleJsIndenter_CaseIndentLevel = -1
 
-
 " ===== taglist.vim
 set tags=tags
 let g:Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8/bin/ctags"
 
-" ===== ref.vim
-nmap ,rp :Ref phpmanual<Space>
-let g:ref_phpmanual_path = $HOME . "/.vim/ref/php/"
-
 " ===== quickrun
-let g:quickrun_config = {}
+let g:quickrun_config = {
+  \   'markdown': {
+  \     'type': 'markdown/gfm',
+  \     'outputter': 'browser'
+  \   }
+  \ }
 
 " ===== gitv
 autocmd FileType gitv call s:my_gitv_settings()
@@ -255,17 +252,6 @@ function! s:toggle_git_folding()
   endif
 endfunction
 
-" ===== ctrlp.vim
-let g:ctrlp_use_migemo = 1
-let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
-let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
-let g:ctrlp_open_new_file       = 1   " 新規ファイル作成時にタブで開く
-
-" ===== SQLUtilities
-vmap <silent>sf <Plug>SQLU_Formatter<CR>
-
-" ===== vim-splash.vim
-"let g:splash#path = $HOME . "/.vim/splash/kabenaguri.txt"
 
 " ===== unite.vim
 nnoremap [unite] <Nop>
@@ -318,6 +304,50 @@ let g:quickrun_config = {
 " ==== Calendar
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
+
+" ==== neocomplcache
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default'    : '',
+    \ 'php'        : $HOME . '/.vim/dict/php.dict',
+    \ 'javascript' : $HOME . '/.vim/dict/javascript.dict',
+    \ }
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplcache#smart_close_popup()
+" endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+inoremap <C-Space> <C-N><C-P>
+inoremap <expr> <C-j> pumvisible() ? "\<Down>" : "\<C-x>\<C-o>"
+inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
+highlight Pmenu ctermbg=blue
+highlight PmenuSel ctermbg=red ctermfg=white
+highlight PmenuSbar ctermbg=white
 
 " ========================
 " ======= Some Tips ======
@@ -405,6 +435,18 @@ inoremap <C-n> <Esc>oX<C-h>
 " IncSearchと一緒にする
 highlight link TagListTagName TODO
 
+" ==== coffeescript setting
+au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+
+" ==== indent guides
+let g:indent_guides_start_level=2
+let g:indent_guides_auto_colors=0
+let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_color_change_percent=20
+let g:indent_guides_guide_size=1
+let g:indent_guides_space_guides=1
+
 
 " ========================================
 "  color settings
@@ -424,29 +466,30 @@ hi PmenuSel ctermbg=lightcyan ctermfg=black
 noremap <C-w>L 9999<C-w>>
 noremap <C-w>R 9999<C-w><
 
+set t_Co=256
 
 " ========================================
-"  original functions
+"  fold setting
 " ========================================
+set foldmethod=marker
+set foldtext=FoldCCtext()
+set foldcolumn=5
+set fillchars=vert:\|
+set commentstring=%s
 
-" PHPRef *func
-" PHP関数を調べる
-" 
-" @param func    調べたいPHP関数
-" 
-function! PHPRef(func)
-  call Ref phpmanual a:func)
-endfunction
-command! -nargs=1 PHPRef call PHPRef(<q-args>)
 
-" json parser
-" http://qiita.com/tekkoc@github/items/324d736f68b0f27680b8
-command! -nargs=? Jq call s:Jq(<f-args>)
-function! s:Jq(...)
-  if 0 == a:0
-    let l:arg = "."
-  else
-    let l:arg = a:1
-  endif
-  execute "%! jq \"" . l:arg . "\""
-endfunction
+" ========================================
+"  clip bord
+" ========================================
+"set clipboard=unnamed,autoselect
+
+" ========================================
+"  .vimrc short cut
+" ========================================
+nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
+
+
+" go lang
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+endif

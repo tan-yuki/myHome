@@ -218,41 +218,6 @@ if [ -f ${localize_file} ]; then
 	source ${localize_file}
 fi
 
-function myvi () {
-	file=$1
-	if [ $# -eq 0 ]; then
-		vi
-	elif [ -f ${file} ]; then
-		vi ${file}
-	else
-		dir=`dirname ${file}`
-		if [ ! -d ${dir} ]; then
-			mkdir -p ${dir}
-		fi
-		vi ${file}
-	fi
-}
-#alias vi=myvi
-
-function google() {
-  local str opt 
-    if [ $# != 0 ]; then # 引数が存在すれば
-    for i in $*; do
-      str="$str+$i"
-      done
-      str=`echo $str | sed 's/^\+//'` #先頭の「+」を削除
-      opt='search?num=50&hl=ja&ie=euc-jp&oe=euc-jp&lr=lang_ja'
-      opt="${opt}&q=${str}"
-    fi
-  w3m http://www.google.co.jp/$opt #引数がなければ $opt は空になる
-    # mozilla -remote openURL\(http::/www.google.co.jp/$opt\) # 未テスト
-}
-alias ggl=google
-
-
-# shell scripts utils
-. ${HOME}/bin/require_utils.sh
-
 # nvm 
 source ~/.nvm/nvm.sh
 nvm use v0.8.23 > /dev/null
@@ -260,40 +225,6 @@ nvm use v0.8.23 > /dev/null
 # tmux solarized
 set -g default-terminal "screen-256color"
 
-
-# cd で移動後に実行
-chpwd() {
-    ls_abbrev
-}
-ls_abbrev() {
-    # -a : Do not ignore entries starting with ..
-    # -C : Force multi-column output.
-    # -F : Append indicator (one of */=>@|) to entries.
-    local cmd_ls='ls'
-    local -a opt_ls
-    opt_ls=('-aCF' '--color=always')
-    case "${OSTYPE}" in
-        freebsd*|darwin*)
-            if type gls > /dev/null 2>&1; then
-                cmd_ls='gls'
-            else
-                # -G : Enable colorized output.
-                opt_ls=('-aCFG')
-            fi
-            ;;
-    esac
-
-    local ls_result
-    ls_result=$(CLICOLOR_FORCE=1 COLUMNS=$COLUMNS command $cmd_ls ${opt_ls[@]} | sed $'/^\e\[[0-9;]*m$/d')
-
-    local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
-
-    if [ $ls_lines -gt 10 ]; then
-        echo "$ls_result" | head -n 5
-        echo '...'
-        echo "$ls_result" | tail -n 5
-        echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
-    else
-        echo "$ls_result"
-    fi
-}
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/_go
+export PATH=$PATH:$GOROOT/bin

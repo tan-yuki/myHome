@@ -6,6 +6,8 @@
 	df-files = diff --name-only
 	lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar%Creset'
 	mg = merge
+	sm = submodule
+	sm-pull-all = submodule foreach 'git pull origin master'
 
 [user]
 	name = tanakayuki
