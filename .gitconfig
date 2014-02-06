@@ -1,21 +1,29 @@
 [alias]
 	co = checkout
 	st = status -s
-	df = diff --word-diff=color
-	df-narrow = diff --word-diff=color --word-diff-regex=.
+	diff = diff -w
+	df = diff -w --word-diff=color
+	df-narrow = diff -w --word-diff=color --word-diff-regex=.
 	df-files = diff --name-only
 	lg = log --graph --pretty='format:%C(yellow)%h%Cblue%d%Creset %s %C(black bold)%an, %ar%Creset'
-	mg = merge
-	sm = submodule
-	sm-pull-all = submodule foreach 'git pull origin master'
+    merge = merge --no-ff
+	today = log --oneline --since='12 hour ago' --author='tanaka' --all
 
-[user]
-	name = tanakayuki
-	email = a0673040@gmail.com
 [core]
-	excludesfile = ./.gitignore
+	excludesfile = /Users/tanaka/.gitignore_global
 	pager = lv -c
-	filemode = false
 	autocrlf = false
+	filemode = false
 [diff]
 	tool = vimdiff
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[user]
+	name = tanaka
+	email = tanaka@chatwork.co.jp
+[color]
+	ui = false

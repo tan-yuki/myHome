@@ -29,28 +29,6 @@ export JSTESTDRIVER_HOME=$HOME/bin
 export VIMHOME=$HOME/.vim/
 
 
-# vim setting
-
-
-alias ls="ls --color"
-alias rm='rm -i'
-alias ll='ls -altr'
-alias dirs='dirs -p'
-
-# git alias
-alias st='git st'
-alias df='git df'
-alias add='git add'
-alias ci='git commit'
-alias push='git push'
-alias pull='git pull'
-alias stash='git stash'
-alias co='git checkout'
-
-# git svn alias
-alias gvn='git svn'
-alias gvn-ci='git stash && git svn dcommit && git stash pop'
-alias gvn-up='git svn rebase'
 
 # custom_color.sh
 autoload colors
@@ -119,7 +97,8 @@ function rprompt-git-current-branch {
   if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
           return
   fi
-  name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+  name=`git symbolic-ref HEAD 2> /dev/null`
+  name=`echo $name | sed -e 's,refs/heads/,,g'`
   if [[ -z $name ]]; then
           return
   fi
@@ -218,9 +197,6 @@ if [ -f ${localize_file} ]; then
 	source ${localize_file}
 fi
 
-# nvm 
-source ~/.nvm/nvm.sh
-nvm use v0.8.23 > /dev/null
 
 # tmux solarized
 set -g default-terminal "screen-256color"
@@ -228,3 +204,53 @@ set -g default-terminal "screen-256color"
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/_go
 export PATH=$PATH:$GOROOT/bin
+
+# cd で移動後に実行
+# chpwd() {
+#     ls
+# }
+
+function do_enter() {
+    if [ -n "$BUFFER" ]; then
+        zle accept-line
+        return 0
+    fi
+    echo
+    ls
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+        echo
+        echo -e "\e[0;33m--- git status ---\e[0m"
+        git status -sb
+    fi
+    zle reset-prompt
+    return 0
+}
+zle -N do_enter
+bindkey '^m' do_enter
+
+alias ls="ls --color"
+alias rm='rm -i'
+alias ll='ls -altr'
+alias dirs='dirs -p'
+alias gvim='open /Applications/MacVim.app'
+
+# git alias
+alias st='git st'
+alias df='git df'
+alias add='git add'
+alias ci='git commit'
+alias push='git push'
+alias pull='git pull'
+alias stash='git stash'
+alias co='git checkout'
+
+# git svn alias
+alias gvn='git svn'
+alias gvn-ci='git stash && git svn dcommit && git stash pop'
+alias gvn-up='git svn rebase'
+
+# vim
+alias vi='vim'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
