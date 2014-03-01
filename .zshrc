@@ -197,7 +197,6 @@ if [ -f ${localize_file} ]; then
 	source ${localize_file}
 fi
 
-
 # tmux solarized
 set -g default-terminal "screen-256color"
 

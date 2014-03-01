@@ -89,7 +89,6 @@ nnoremap [Tag]q  :tabclose<CR>
 nnoremap [Tag]l  :tabs<CR>
 
 
-
 " ===========================
 " ======= Each plugins ======
 " ===========================
@@ -103,18 +102,18 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-
+"NeoBundle 'Shougo/neosnippet'
 "NeoBundle 'bling/vim-airline'
 "NeoBundle 'stephenmckinney/vim-solarized-powerline'
 "NeoBundle 'thinca/vim-splash'
 NeoBundle 'Align'
 NeoBundle 'AndrewRadev/linediff.vim'
+NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'FuzzyFinder'
 NeoBundle 'L9'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
-"NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
@@ -140,6 +139,7 @@ NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/habatobi-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/zencoding-vim'
@@ -147,7 +147,6 @@ NeoBundle 'mru.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'rhysd/clever-f.vim'
-NeoBundle 'rhysd/neco-ruby-keyword-args'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'sjl/gundo.vim.git'
 NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
@@ -162,7 +161,6 @@ NeoBundle 'tyru/vim-altercmd'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundleCheck
-
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
 set noshowmode
@@ -203,6 +201,16 @@ inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
 highlight Pmenu ctermbg=blue
 highlight PmenuSel ctermbg=red ctermfg=white
 highlight PmenuSbar ctermbg=white
+set completeopt=menu,preview
+
+" ==== unite.vim
+nnoremap <slient> <Leader>qf :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
+nnoremap <slient> <Leader>qm :<C-u>Unite file_mru<CR>
+nnoremap <slient> <Leader>qr :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <slient> <Leader>qg :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" ==== NERDTree
+let NERDTreeShowHidden=1
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
@@ -305,6 +313,9 @@ let g:quickrun_config = {
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 
+" ===== emmet-vim
+let g:user_emmet_leader_key='<C-Z>'
+
 " ==== neocomplcache
 
 " Disable AutoComplPop.
@@ -321,7 +332,6 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default'    : '',
     \ 'php'        : $HOME . '/.vim/dict/php.dict',
-    \ 'javascript' : $HOME . '/.vim/dict/javascript.dict',
     \ }
 
 " Plugin key-mappings.
@@ -359,10 +369,13 @@ hi Comment ctermfg=gray
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 match ZenkakuSpace /　/
 
+" ==== Format
+"auto BufWritePre *.go Fmt
+
 " ==== Define file type
 au BufRead,BufNewFile *.sql  set filetype=sql
 au BufRead,BufNewFile *.case set filetype=html
-au BufRead,BufNewFile *.scss set filetype=css
+au BufRead,BufNewFile *.scss set filetype=sass
 au BufRead,BufNewFile *.vim  set filetype=vim
 au BufRead,BufNewFile *.md   set filetype=markdown
 au BufRead,BufNewFile *.scss set filetype=sass
@@ -370,7 +383,6 @@ au BufRead,BufNewFile *.scss set filetype=sass
 " ==== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
 autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
-autocmd BufNewFile *.js   0r   $HOME/.vim/template/javascript.txt
 
 " - open a file with pre-modified point
 "au BufWritePost * mkview
@@ -492,4 +504,7 @@ nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
 " go lang
 if $GOROOT != ''
   set rtp+=$GOROOT/misc/vim
+  exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+  exe "set rtp+=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
+
