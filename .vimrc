@@ -62,9 +62,15 @@ set showtabline=2
 " - 常に下2行開けておく
 set laststatus=2
 
-set expandtab
-
 set undolevels=9999
+
+set history=9999
+
+set ruler
+set cursorline
+
+set autoindent
+set smartindent
 
 " - 正規表現
 set regexpengine=0
@@ -73,7 +79,7 @@ set regexpengine=0
 
 " The prefix key.
 nnoremap [Tag]   <Nop>
-nmap t [Tag]
+nmap <Leader> [Tag]
 
 " Tab jump
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
@@ -82,11 +88,11 @@ for n in range(1, 9)
 endfor
 
 
-nnoremap [Tag]t  :tabedit<CR>
-nnoremap [Tag]n  :tabNext<CR>
-nnoremap [Tag]p  :tabprevious<CR>
-nnoremap [Tag]q  :tabclose<CR>
-nnoremap [Tag]l  :tabs<CR>
+nnoremap [Tag]tt  :tabedit<CR>
+nnoremap [Tag]tn  :tabNext<CR>
+nnoremap [Tag]tp  :tabprevious<CR>
+nnoremap [Tag]tq  :tabclose<CR>
+nnoremap [Tag]tl  :tabs<CR>
 
 
 " ===========================
@@ -102,10 +108,6 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-"NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'bling/vim-airline'
-"NeoBundle 'stephenmckinney/vim-solarized-powerline'
-"NeoBundle 'thinca/vim-splash'
 NeoBundle 'Align'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'Blackrush/vim-gocode'
@@ -114,6 +116,8 @@ NeoBundle 'L9'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
@@ -124,8 +128,10 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'airblade/vim-gitgutter'
+"NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'arnaud-lb/vim-php-namespace'
+"NeoBundle 'bling/vim-airline'
 NeoBundle 'deris/vim-duzzle'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'goldfeld/vim-seek'
@@ -135,7 +141,7 @@ NeoBundle 'hekyou/vim-rectinsert'
 NeoBundle 'hrp/EnhancedCommentify'
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'jiangmiao/simple-javascript-indenter.git'
-NeoBundle 'kana/vim-fakeclip'
+"NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'majutsushi/tagbar'
@@ -148,18 +154,22 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'nono/vim-handlebars'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'sjl/gundo.vim.git'
+"NeoBundle 'sjl/gundo.vim.git'
 NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
 NeoBundle 'surround.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
+"NeoBundle 'thinca/vim-splash'
+NeoBundle 'tomasr/molokai.git'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tyru/vim-altercmd'
-NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'vim-scripts/SQLUtilities'
+NeoBundle 'vim-scripts/errormarker.vim.git'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'wincent/Command-T'
 NeoBundleCheck
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
@@ -396,8 +406,8 @@ set backspace=2
 
 " ==== for vimdiff setting
 set diffopt-=filler
-hi DiffAdd    ctermfg=black   ctermbg=lightblue
-hi DiffDelete ctermfg=black   ctermbg=lightmagenta
+hi DiffAdd    ctermfg=black   ctermbg=lightmagenta
+hi DiffDelete ctermfg=black   ctermbg=lightblue
 hi DiffChange ctermfg=black   ctermbg=lightgray
 hi DiffText   ctermfg=black   ctermbg=lightcyan
 
@@ -485,7 +495,8 @@ set t_Co=256
 " ========================================
 set foldmethod=marker
 set foldtext=FoldCCtext()
-set foldcolumn=5
+"set foldcolumn=5
+" ↑この設定のせいで左側に余白ができていた
 set fillchars=vert:\|
 set commentstring=%s
 
@@ -500,6 +511,18 @@ set commentstring=%s
 " ========================================
 nnoremap <Space>. :<C-u>tabedit $MYVIMRC<CR>
 
+" Zenkaku to □
+if has('conceal')
+   set conceallevel=2 concealcursor=i
+endif
+
+" indent-guides
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 1
+
+" colorschehme
+colorscheme molokai
+let g:molokai_original=1
 
 " go lang
 if $GOROOT != ''

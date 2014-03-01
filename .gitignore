@@ -8,6 +8,7 @@
 !/.vimrc
 !/.vim
 /.vim/view/
+/.vim/session/
 !/.zshrc
 !/.zsh
 !/.zshrc.cygwin
