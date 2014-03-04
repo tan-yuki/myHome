@@ -1,7 +1,6 @@
 " Syntax file for travel's PL/SQL.
 " Install this file to $HOME/.vim/after/syntax/
 " 
-" @author: Tanaka, Yuki a <ts-yuki.a.tanaka@mai.rakuten.com>
 " @version: 0.1
 "
 syn case match
