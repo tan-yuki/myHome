@@ -3,4 +3,4 @@
 " case here. Note that you should not try to comment lines starting
 " with '<?'.
 "
-call EnhCommentifyFallback4Embedded('&ft == "php" && synFiletype == ""', "html")
+"call EnhCommentifyFallback4Embedded('&ft == "php" && synFiletype == ""', "html")

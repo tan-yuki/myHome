@@ -36,8 +36,9 @@ set list
 set listchars=tab:>.,trail:-,eol:$,nbsp:%,extends:\
 
 " - Tab setting
-set ts=4
-set sw=4
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 " - Prevent auto newline
 set textwidth=0
@@ -68,9 +69,6 @@ set history=9999
 
 set ruler
 set cursorline
-
-set autoindent
-set smartindent
 
 " - 正規表現
 set regexpengine=0
@@ -111,13 +109,13 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundle 'Align'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'FuzzyFinder'
+"NeoBundle 'FuzzyFinder'
 NeoBundle 'L9'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+"NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
@@ -130,7 +128,7 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'airblade/vim-gitgutter'
 "NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'arnaud-lb/vim-php-namespace'
+"NeoBundle 'arnaud-lb/vim-php-namespace'
 "NeoBundle 'bling/vim-airline'
 NeoBundle 'deris/vim-duzzle'
 NeoBundle 'fuenor/qfixgrep'
@@ -142,13 +140,13 @@ NeoBundle 'hrp/EnhancedCommentify'
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'jiangmiao/simple-javascript-indenter.git'
 "NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'kana/vim-submode'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'kmnk/vim-unite-giti'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/habatobi-vim'
 NeoBundle 'mattn/webapi-vim'
-NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mru.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'nono/vim-handlebars'
@@ -389,6 +387,7 @@ au BufRead,BufNewFile *.scss set filetype=sass
 au BufRead,BufNewFile *.vim  set filetype=vim
 au BufRead,BufNewFile *.md   set filetype=markdown
 au BufRead,BufNewFile *.scss set filetype=sass
+au BufRead,BufNewFile *.php  set filetype=php
 
 " ==== Insert template
 autocmd BufNewFile *.php  0r   $HOME/.vim/template/php.txt
@@ -403,13 +402,6 @@ autocmd BufNewFile *.html 0r   $HOME/.vim/template/html.txt
 noremap ^? ^H
 noremap! ^? ^H
 set backspace=2
-
-" ==== for vimdiff setting
-set diffopt-=filler
-hi DiffAdd    ctermfg=black   ctermbg=lightmagenta
-hi DiffDelete ctermfg=black   ctermbg=lightblue
-hi DiffChange ctermfg=black   ctermbg=lightgray
-hi DiffText   ctermfg=black   ctermbg=lightcyan
 
 " ==== History setting
 cnoremap <C-n> <Down>
@@ -457,10 +449,6 @@ inoremap <C-n> <Esc>oX<C-h>
 " IncSearchと一緒にする
 highlight link TagListTagName TODO
 
-" ==== coffeescript setting
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-
 " ==== indent guides
 let g:indent_guides_start_level=2
 let g:indent_guides_auto_colors=0
@@ -504,7 +492,7 @@ set commentstring=%s
 " ========================================
 "  clip bord
 " ========================================
-"set clipboard=unnamed,autoselect
+set clipboard=unnamed,autoselect
 
 " ========================================
 "  .vimrc short cut
@@ -530,4 +518,48 @@ if $GOROOT != ''
   exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
   exe "set rtp+=" . globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
+
+" ========================================
+"  split window, tabs
+" ========================================
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" ==== for vimdiff setting
+set diffopt-=filler
+hi DiffAdd ctermbg=17
+
 
