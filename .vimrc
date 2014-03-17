@@ -219,6 +219,8 @@ nnoremap <slient> <Leader>qg :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
 " ==== NERDTree
 let NERDTreeShowHidden=1
+nnoremap nt :NERDTree<CR>
+nnoremap cn :NERDTreeClose<CR>
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
