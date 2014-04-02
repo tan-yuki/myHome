@@ -77,7 +77,7 @@ set regexpengine=0
 
 " The prefix key.
 nnoremap [Tag]   <Nop>
-nmap <Leader> [Tag]
+nmap ,t [Tag]
 
 " Tab jump
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
@@ -86,11 +86,11 @@ for n in range(1, 9)
 endfor
 
 
-nnoremap [Tag]tt  :tabedit<CR>
-nnoremap [Tag]tn  :tabNext<CR>
-nnoremap [Tag]tp  :tabprevious<CR>
-nnoremap [Tag]tq  :tabclose<CR>
-nnoremap [Tag]tl  :tabs<CR>
+nnoremap [Tag]c  :tabnew<CR>
+nnoremap [Tag]n  :tabnext<CR>
+nnoremap [Tag]p  :tabprevious<CR>
+nnoremap [Tag]q  :tabclose<CR>
+nnoremap [Tag]l  :tabs<CR>
 
 
 " ===========================
@@ -220,7 +220,7 @@ nnoremap <slient> <Leader>qg :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " ==== NERDTree
 let NERDTreeShowHidden=1
 nnoremap nt :NERDTree<CR>
-nnoremap cn :NERDTreeClose<CR>
+nnoremap nc :NERDTreeClose<CR>
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
