@@ -19,6 +19,7 @@
 !/makeLnkToHome.sh
 !/.w3m
 !/.tmux.conf
+!/Brewfile
 !/antigen
 /.vim/view
 /.vim/doc/tags
