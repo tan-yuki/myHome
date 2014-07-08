@@ -5,6 +5,10 @@ SAVEHIST=9999
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# setting for peco
+for f (~/.zsh/peco-sources/*) source "${f}" # load peco sources
+bindkey '^r' peco-select-history
+
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 
 # End of lines configured by zsh-newuser-install
@@ -200,8 +204,9 @@ fi
 # tmux solarized
 set -g default-terminal "screen-256color"
 
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/_go
+export GOHOME=$(brew --prefix go)
+export GOROOT=$GOHOME/libexec
+export GOPATH=$GOHOME/_go
 export PATH=$PATH:$GOROOT/bin
 
 # cd で移動後に実行
