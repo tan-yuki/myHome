@@ -129,7 +129,7 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'airblade/vim-gitgutter'
 "NeoBundle 'altercation/vim-colors-solarized'
 "NeoBundle 'arnaud-lb/vim-php-namespace'
-"NeoBundle 'bling/vim-airline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'deris/vim-duzzle'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'goldfeld/vim-seek'
@@ -219,8 +219,10 @@ nnoremap <slient> <Leader>qg :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
 " ==== NERDTree
 let NERDTreeShowHidden=1
+let g:NERDTreeMapActivateNode="o"
 nnoremap nt :NERDTree<CR>
 nnoremap nc :NERDTreeClose<CR>
+
 
 " ==== rect insert
 vmap <silent> <leader>vp <Plug>:RectInsert -i
@@ -368,6 +370,17 @@ inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
 highlight Pmenu ctermbg=blue
 highlight PmenuSel ctermbg=red ctermfg=white
 highlight PmenuSbar ctermbg=white
+
+" ===== solarized
+"let g:solarized_termcolors=256
+"syntax enable
+"set background=dark
+"colorscheme solarized
+
+
+" ==== vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="dark"
 
 " ========================
 " ======= Some Tips ======
@@ -565,3 +578,6 @@ set diffopt-=filler
 hi DiffAdd ctermbg=17
 
 
+"python from powerline.vim import setup as powerline_setup
+"python powerline_setup()
+"python del powerline_setup

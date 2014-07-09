@@ -227,9 +227,6 @@ function do_enter() {
 zle -N do_enter
 bindkey '^m' do_enter
 
-alias ls="ls --color"
-alias rm='rm -i'
-alias ll='ls -altr'
 alias dirs='dirs -p'
 alias gvim='open /Applications/MacVim.app'
 
@@ -242,6 +239,8 @@ alias push='git push'
 alias pull='git pull'
 alias stash='git stash'
 alias co='git checkout'
+alias ls='ls --color'
+alias ll='ls -altr'
 
 # git svn alias
 alias gvn='git svn'
@@ -251,5 +250,10 @@ alias gvn-up='git svn rebase'
 # vim
 alias vi='vim'
 
+# tmux
+alias tmux="tmux -2"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
