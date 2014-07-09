@@ -18,6 +18,7 @@ set cursorline
 
 " - Not ring a bell
 set visualbell
+set noerrorbells
 
 set foldmethod=syntax
 
@@ -153,7 +154,7 @@ NeoBundle 'nono/vim-handlebars'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'scrooloose/nerdtree'
 "NeoBundle 'sjl/gundo.vim.git'
-NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
+"NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
 NeoBundle 'surround.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -168,6 +169,7 @@ NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'vim-scripts/errormarker.vim.git'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'wincent/Command-T'
+NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundleCheck
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
@@ -238,12 +240,12 @@ set tags=tags
 let g:Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8/bin/ctags"
 
 " ===== quickrun
-let g:quickrun_config = {
-  \   'markdown': {
-  \     'type': 'markdown/gfm',
-  \     'outputter': 'browser'
-  \   }
-  \ }
+"let g:quickrun_config = {
+"  \   'markdown': {
+"  \     'type': 'markdown/gfm',
+"  \     'outputter': 'browser'
+"  \   }
+"  \ }
 
 " ===== gitv
 autocmd FileType gitv call s:my_gitv_settings()
@@ -312,12 +314,12 @@ let g:linediff_first_buffer_command = 'tabnew'
 let g:linediff_second_buffer_command = 'rightbelow vertical new'
 
 " ===== vim-quickrun-markdown-gfm
-let g:quickrun_config = {
-\   'markdown': {
-\     'type': 'markdown/gfm',
-\     'outputter': 'browser'
-\   }
-\ }
+"let g:quickrun_config = {
+"\   'markdown': {
+"\     'type': 'markdown/gfm',
+"\     'outputter': 'browser'
+"\   }
+"\ }
 
 " ==== Calendar
 let g:calendar_google_calendar = 1
@@ -368,6 +370,10 @@ inoremap <expr> <C-k> pumvisible() ? "\<Up>" : "\<C-x>\<C-o>"
 highlight Pmenu ctermbg=blue
 highlight PmenuSel ctermbg=red ctermfg=white
 highlight PmenuSbar ctermbg=white
+
+" ===== easymotion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 " ========================
 " ======= Some Tips ======
@@ -564,4 +570,12 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 set diffopt-=filler
 hi DiffAdd ctermbg=17
 
+nnoremap k   gk
+nnoremap j   gj
+vnoremap k   gk
+vnoremap j   gj
+nnoremap gk  k
+nnoremap gj  j
+vnoremap gk  k
+vnoremap gj  j
 
