@@ -77,7 +77,7 @@ set regexpengine=0
 
 " The prefix key.
 nnoremap [Tag]   <Nop>
-nmap ,t [Tag]
+nmap tt [Tag]
 
 " Tab jump
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
