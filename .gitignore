@@ -27,3 +27,4 @@
 /.vim/.netrwhist
 /.vim/bundle/
 !/.vim/bundle/neobundle.vim
+!/.config

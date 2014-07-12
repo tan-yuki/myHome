@@ -1,0 +1,36 @@
+{
+    "default_module": "powerline.segments.common",
+    "segment_data": {
+        "uptime": {
+            "before": "⇑  "
+        },
+        "date": {
+            "before": ""
+        }
+    },
+    "segments": {
+        "left": [
+            {
+                "name": "branch",
+                "priority": 60
+            }
+        ],
+        "right": [
+            {
+                "name": "uptime",
+                "priority": 50
+            },
+            {
+                "name": "system_load",
+                "priority": 50
+            },
+            {
+                "name": "date",
+                "args": {
+                    "format": "%H:%M",
+                    "istime": true
+                }
+            }
+        ]
+    }
+}

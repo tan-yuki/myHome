@@ -5,6 +5,10 @@ SAVEHIST=9999
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# setting for peco
+for f (~/.zsh/peco-sources/*) source "${f}" # load peco sources
+bindkey '^r' peco-select-history
+
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 
 # End of lines configured by zsh-newuser-install
@@ -108,7 +112,7 @@ function rprompt-git-current-branch {
   # これをしないと右プロンプトの位置がずれる
   echo "%{$color%}($name)%{$reset_color%} "
 }
-PROMPT="%{${fg[green]}%}[%n@mac-mini] %%%{${reset_color}%} "
+PROMPT="%{${fg[green]}%}[%n@macbook] %%%{${reset_color}%} "
 RPROMPT="%{${fg[yellow]}%}[`rprompt-git-current-branch`%{${fg[yellow]}%}%~]%{${reset_color}%}"
 precmd() {
   RPROMPT="%{${fg[yellow]}%}[`rprompt-git-current-branch`%{${fg[yellow]}%}%~]%{${reset_color}%}"
@@ -200,8 +204,9 @@ fi
 # tmux solarized
 set -g default-terminal "screen-256color"
 
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/_go
+export GOHOME=$(brew --prefix go)
+export GOROOT=$GOHOME/libexec
+export GOPATH=$GOHOME/_go
 export PATH=$PATH:$GOROOT/bin
 
 # cd で移動後に実行
@@ -227,9 +232,6 @@ function do_enter() {
 zle -N do_enter
 bindkey '^m' do_enter
 
-alias ls="ls --color"
-alias rm='rm -i'
-alias ll='ls -altr'
 alias dirs='dirs -p'
 alias gvim='open /Applications/MacVim.app'
 
@@ -242,6 +244,8 @@ alias push='git push'
 alias pull='git pull'
 alias stash='git stash'
 alias co='git checkout'
+alias ls='ls --color'
+alias ll='ls -altr'
 
 # git svn alias
 alias gvn='git svn'
@@ -251,5 +255,11 @@ alias gvn-up='git svn rebase'
 # vim
 alias vi='vim'
 
+# tmux
+alias tmux="tmux -2"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
