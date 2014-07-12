@@ -112,7 +112,7 @@ function rprompt-git-current-branch {
   # これをしないと右プロンプトの位置がずれる
   echo "%{$color%}($name)%{$reset_color%} "
 }
-PROMPT="%{${fg[green]}%}[%n@mac-mini] %%%{${reset_color}%} "
+PROMPT="%{${fg[green]}%}[%n@macbook] %%%{${reset_color}%} "
 RPROMPT="%{${fg[yellow]}%}[`rprompt-git-current-branch`%{${fg[yellow]}%}%~]%{${reset_color}%}"
 precmd() {
   RPROMPT="%{${fg[yellow]}%}[`rprompt-git-current-branch`%{${fg[yellow]}%}%~]%{${reset_color}%}"
