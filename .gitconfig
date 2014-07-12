@@ -2,6 +2,7 @@
 	co = checkout
 	st = status -s
 	diff = diff -w
+	pull = pull --rebase
 	df = diff -w --word-diff=color
 	df-narrow = diff -w --word-diff=color --word-diff-regex=.
 	df-files = diff --name-only

@@ -18,6 +18,7 @@ set cursorline
 
 " - Not ring a bell
 set visualbell
+set noerrorbells
 
 set foldmethod=syntax
 
@@ -112,7 +113,7 @@ NeoBundle 'Blackrush/vim-gocode'
 "NeoBundle 'FuzzyFinder'
 NeoBundle 'L9'
 NeoBundle 'LeafCage/foldCC'
-NeoBundle 'Lokaltog/vim-powerline'
+"NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Shougo/neocomplcache'
 "NeoBundle 'Shougo/neosnippet'
 "NeoBundle 'Shougo/neosnippet-snippets'
@@ -129,7 +130,7 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'airblade/vim-gitgutter'
 "NeoBundle 'altercation/vim-colors-solarized'
 "NeoBundle 'arnaud-lb/vim-php-namespace'
-NeoBundle 'bling/vim-airline'
+"NeoBundle 'bling/vim-airline'
 NeoBundle 'deris/vim-duzzle'
 NeoBundle 'fuenor/qfixgrep'
 NeoBundle 'goldfeld/vim-seek'
@@ -153,7 +154,7 @@ NeoBundle 'nono/vim-handlebars'
 NeoBundle 'rhysd/clever-f.vim'
 NeoBundle 'scrooloose/nerdtree'
 "NeoBundle 'sjl/gundo.vim.git'
-NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
+"NeoBundle 'superbrothers/vim-quickrun-markdown-gfm'
 NeoBundle 'surround.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -168,6 +169,7 @@ NeoBundle 'vim-scripts/SQLUtilities'
 NeoBundle 'vim-scripts/errormarker.vim.git'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'wincent/Command-T'
+NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundleCheck
 
 set rtp+=~/.vim/bundle/powerline/bindings/vim
@@ -240,12 +242,12 @@ set tags=tags
 let g:Tlist_Ctags_Cmd = "/usr/local/Cellar/ctags/5.8/bin/ctags"
 
 " ===== quickrun
-let g:quickrun_config = {
-  \   'markdown': {
-  \     'type': 'markdown/gfm',
-  \     'outputter': 'browser'
-  \   }
-  \ }
+"let g:quickrun_config = {
+"  \   'markdown': {
+"  \     'type': 'markdown/gfm',
+"  \     'outputter': 'browser'
+"  \   }
+"  \ }
 
 " ===== gitv
 autocmd FileType gitv call s:my_gitv_settings()
@@ -314,12 +316,12 @@ let g:linediff_first_buffer_command = 'tabnew'
 let g:linediff_second_buffer_command = 'rightbelow vertical new'
 
 " ===== vim-quickrun-markdown-gfm
-let g:quickrun_config = {
-\   'markdown': {
-\     'type': 'markdown/gfm',
-\     'outputter': 'browser'
-\   }
-\ }
+"let g:quickrun_config = {
+"\   'markdown': {
+"\     'type': 'markdown/gfm',
+"\     'outputter': 'browser'
+"\   }
+"\ }
 
 " ==== Calendar
 let g:calendar_google_calendar = 1
@@ -381,6 +383,10 @@ highlight PmenuSbar ctermbg=white
 " ==== vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="dark"
+
+" ===== easymotion
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
 
 " ========================
 " ======= Some Tips ======
@@ -577,7 +583,15 @@ call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 set diffopt-=filler
 hi DiffAdd ctermbg=17
 
+nnoremap k   gk
+nnoremap j   gj
+vnoremap k   gk
+vnoremap j   gj
+nnoremap gk  k
+nnoremap gj  j
+vnoremap gk  k
+vnoremap gj  j
 
-"python from powerline.vim import setup as powerline_setup
-"python powerline_setup()
-"python del powerline_setup
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
